@@ -6,13 +6,20 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/11/28 02:11:27 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/01 02:45:47 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+typedef struct	s_name_tags
+{
+	char *elements_o[4];
+	char *elements_c[4];
+	char *components_c[5];
+	char *components_o[5];
+}				t_tags;
 
 typedef struct	s_vect3
 {
