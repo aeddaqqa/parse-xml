@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_xml.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/01 06:13:38 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:53:19 by farwila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char		*get_tag(char *s, int *i)
 	int		j;
 
 	j = 0;
-	white_space(s, i);
 	if (!s || !s[j] || s[j] != '<')
 		return (NULL);
 	while (s[j] && s[j] != '>')
@@ -91,6 +90,35 @@ char		*inner_text(char *s, int *j)
 }
 
 
+int		check_components_exist(t_node n, int type)
+{
+	if (type == 0 && n.cmp.position == true)
+		return (-1);
+	else if (type == 1 && n.cmp.color == true)
+		return (-1);
+	else if (type == 2 && n.cmp.radius == true)
+		return (-1);
+	else if (type == 3 && n.cmp.ambient == true)
+		return (-1);
+	else if (type == 4 && n.cmp.orientation == true)
+		return (-1);
+	return (1);
+}
+
+void		valid_cmp(t_node *n, int type)
+{
+	if (type == 0) 
+		n->cmp.position = true;
+	else if (type == 1)
+		n->cmp.color = true;
+	else if (type == 2)
+		n->cmp.radius = true;
+	else if (type == 3)
+		n->cmp.ambient = true;
+	else if (type == 4)
+		n->cmp.orientation = true;
+}
+
 int		stock_elements_cmp(char *s, t_tags tags, t_node n)
 {
 	int			i;
@@ -99,13 +127,17 @@ int		stock_elements_cmp(char *s, t_tags tags, t_node n)
 	char		*content;
 
 	i = 0;
-	if (!(comp = get_tag(s, &i)))
+	white_space(s, &i);
+	if (!(comp = get_tag(&s[i], &i)))
 		return (-1);
 	if (!ft_strcmp(comp, tags.elements_c[n.type]))
 		return (1);
 	ft_putendl(comp);
 	if ((r = check_openning_elem(comp, tags.components_o)) < 0)
 		return (-1);
+	if ((check_components_exist(n, r)) == -1)
+		return (-1);
+	valid_cmp(&n, r);
 	content = inner_text(&s[i], &i);
 	ft_putendl(content);
 	if (check_closing_elem(&s[i], r, tags.components_c, &i) < 0)
@@ -121,6 +153,7 @@ int		stock_elements(char *str, t_tags tags)
 
 	i = 0;
 	node = init_node();
+	white_space(&str[i], &i);
 	elem = get_tag(&str[i], &i);
 	if ((node.type = cmp_with_objects(elem, tags.elements_o)) < 0)
 		return (-1);

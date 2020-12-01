@@ -6,4 +6,11 @@
 		<raduis>45</raduis>
 		<ambient>50%</ambient>
 	</cone>
+	<sphere>
+		<position>1 , 5, 4</position>
+		<orientation>1 , 5, 4</orientation>
+		<color>0xffffff</color>
+		<raduis>45</raduis>
+		<ambient>50%</ambient>
+	</sphere>
 </scene>
