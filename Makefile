@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: farwila <farwila@student.42.fr>            +#+  +:+       +#+         #
+#    By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 20:16:38 by aeddaqqa          #+#    #+#              #
-#    Updated: 2020/12/01 18:01:43 by farwila          ###   ########.fr        #
+#    Updated: 2020/12/02 02:51:27 by aeddaqqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ INC = includes/rt.h
 SDLF = -I SDL/SDL2.framework/Headers
 
 OBJ = srcs/main.o srcs/destroy.o srcs/init.o srcs/parse_xml.o\
-	srcs/read.o
+	srcs/read.o srcs/stock_components.o srcs/check.o\
+	srcs/parse_utilfunc.o srcs/stock.o
 
 LIB = libft/libft.a
 

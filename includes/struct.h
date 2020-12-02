@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/01 02:45:47 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/01 23:57:54 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_ocomponent
 
 typedef struct	s_node
 {
-	t_type			type;
+	int				type;
 	o_component		cmp;
 }				t_node;
 

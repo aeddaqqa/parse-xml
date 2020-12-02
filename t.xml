@@ -1,16 +1,23 @@
-<scene antiliasing = "none" image-save = "a">
-	<cone>
-		<position>1 , 5, 4</position>
-		<orientation>1 , 5, 4</orientation>
-		<color>0xffffff</color>
-		<raduis>45</raduis>
-		<ambient>50%</ambient>
-	</cone>
+<scene>
+	<cylinder>
+		<position>1,2,3</position>
+		<color>123456789</color>
+		<r_a>fejjjj</r_a>
+		<orientation>bskech</orientation>
+		<ambient>bskech</ambient>
+	</cylinder>
+	<plane>
+		<position>1,2,3</position>
+		<color>123456789</color>
+		<r_a>fejjjj**fejjjj</r_a>
+		<orientation>bskech</orientation>
+		<ambient>bskech</ambient>
+	</plane>
 	<sphere>
-		<position>1 , 5, 4</position>
-		<orientation>1 , 5, 4</orientation>
-		<color>0xffffff</color>
-		<raduis>45</raduis>
-		<ambient>50%</ambient>
+		<position>1,2,3</position>
+		<color>123456789</color>
+		<r_a>fejjjj</r_a>
+		<orientation>bskech</orientation>
+		<ambient>bskech</ambient>
 	</sphere>
 </scene>

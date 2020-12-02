@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_xml.c                                        :+:      :+:    :+:   */
+/*   parse_utilfunc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/02 03:11:44 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/02 02:53:35 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-int		check(char *str)
+char		*get_tag(char *s, int *i)
 {
-	int		i;
-	int		r;
-	int		*z;
-	char	*elem;
-	t_tags	tags;
+	char	*tag;
+	int		j;
 
-	tags = init_tab_tags();
-	if (str[0] != '<')
+	j = 0;
+	if (!s || !s[j] || s[j] != '<')
+		return (NULL);
+	while (s[j] && s[j] != '>')
+		j++;
+	tag = ft_strsub(s, 0, ++j);
+	*i += j;
+	return (tag);
+}
+
+int		white_space(char *s, int *i)
+{
+	while (s[*i] && (s[*i] == ' ' || s[*i] == '\t' || s[*i] == '\n'))
+		(*i)++;
+	if (!s[*i])
 		return (-1);
-	i = 0;
-	while (str[i] && str[i] != '>')
-		i++;
-	if (!str[i])
-		return (-1);
-	elem = ft_strsub(str, 0, i + 1);
-	if (ft_strcmp(elem, "<scene>"))
-		return (-1); 
-	z = malloc(sizeof(int));
-	*z = 0;
-	if ((r = stock_elements(str + i + 1 , tags, z)) < 0)
-		return (-1);
-	return (r);
+	return (1);
 }

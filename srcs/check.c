@@ -1,39 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_xml.c                                        :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/02 03:11:44 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/02 02:48:58 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/02 02:50:45 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-int		check(char *str)
+int		cmp_with_objects(char *s, char **tab)
 {
 	int		i;
-	int		r;
-	int		*z;
-	char	*elem;
-	t_tags	tags;
-
-	tags = init_tab_tags();
-	if (str[0] != '<')
-		return (-1);
+	
 	i = 0;
-	while (str[i] && str[i] != '>')
+	while (i < 4)
+	{
+		if (!ft_strcmp(s, tab[i]))
+			return (i);
 		i++;
-	if (!str[i])
+	}
+	return (-1);
+}
+
+int		check_openning_elem(char *s, char **tab)
+{
+	int		i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (!ft_strcmp(s, tab[i]))
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int		check_closing_elem(char *s, int n, char **tab, int *i)
+{
+	char	*tag;
+
+	if (!(tag = get_tag(s, i)))
 		return (-1);
-	elem = ft_strsub(str, 0, i + 1);
-	if (ft_strcmp(elem, "<scene>"))
-		return (-1); 
-	z = malloc(sizeof(int));
-	*z = 0;
-	if ((r = stock_elements(str + i + 1 , tags, z)) < 0)
-		return (-1);
-	return (r);
+	if (!ft_strcmp(tab[n], tag))
+		return (1);
+	return (-1);
 }
