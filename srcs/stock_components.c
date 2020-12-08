@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:45:32 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/02 02:55:12 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/08 11:57:13 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,22 @@ int		stock_elements_cmp(char *s, t_tags tags, t_node n, int *i)
 	if (!(comp = get_tag(&s[*i], i)))
 		return (-1);
 	if (!ft_strcmp(comp, tags.elements_c[n.type]))
+	{
+		ft_strdel(&comp);
 		return (all_cmp_valid(n));
+	}
 	if ((r = check_openning_elem(comp, tags.components_o)) < 0)
+	{
+		ft_strdel(&comp);
 		return (-1);
+	}
 	if ((check_components_exist(n, r)) == -1)
+	{
+		ft_strdel(&comp);
 		return (-1);
+	}
 	valid_cmp(&n, r);
+	ft_strdel(&comp);
 	content = inner_text(&s[*i], i);
 	if (check_closing_elem(&s[*i], r, tags.components_c, i) < 0)
 		return (-1);
