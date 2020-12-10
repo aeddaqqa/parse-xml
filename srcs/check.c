@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:48:58 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/08 11:34:05 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/10 16:33:18 by farwila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ int		check_closing_elem(char *s, int n, char **tab, int *i)
 	if (!(tag = get_tag(s, i)))
 		return (-1);
 	if (!ft_strcmp(tab[n], tag))
+	{
+		ft_strdel(&tag);
 		return (1);
+	}
+	ft_strdel(&tag);
 	return (-1);
 }

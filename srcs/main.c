@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 20:41:44 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/08 10:11:15 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/10 16:17:16 by farwila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,19 @@
 int		main(int ac, char **av)
 {
 	char *str;
-	
+	char *tmp;
+
 	if (ac == 2)
 	{
-		str = read_file(av[1]);
+		tmp = read_file(av[1]);
+		str = ft_strtrim(tmp);
+		free(tmp);
 		if (!str)
 			destroy(OPEN_FILE);
 		if (!*str)
 			destroy(EMPTY_FILE);
 		printf("\n[-------------------|%d|------------------]\n", check(str));
+		free(str);
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_xml.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/08 11:41:12 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/10 16:06:30 by farwila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ int		check(char *str)
 		return (-1);
 	elem = ft_strsub(str, 0, i + 1);
 	if (ft_strcmp(elem, "<scene>"))
+	{
+		free(elem);
 		return (-1); 
+	}
+	free(elem);
 	z = malloc(sizeof(int));
 	*z = 0;
 	if ((r = stock_elements(str + i + 1 , tags, z)) < 0)
@@ -38,5 +42,7 @@ int		check(char *str)
 		free(z);
 		return (-1);
 	}
+	// else
+	free(z);
 	return (r);
 }
