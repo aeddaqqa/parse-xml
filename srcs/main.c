@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 20:41:44 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/11 03:31:14 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/11 06:02:13 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,23 @@ int		get_raduis_a(char *s, int type, double *r_a)
 }
 
 
+t_rt	*init_rt()
+{
+	t_rt	*new;
+
+	if (!(new = malloc(sizeof(t_rt))))
+		return (NULL);
+	new->cameras = NULL;
+	new->lights = NULL;
+	new->objects = NULL;
+	return (new);
+}
+
 int		main(int ac, char **av)
 {
-	char *str;
-	char *tmp;
+	char	*str;
+	char	*tmp;
+	t_rt	*rt;
 
 	if (ac == 2)
 	{
@@ -137,7 +150,16 @@ int		main(int ac, char **av)
 			destroy(OPEN_FILE);
 		if (!*str)
 			destroy(EMPTY_FILE);
-		printf("\n[-------------------|%d|------------------]\n", check(str));
+		rt = init_rt();
+		if (rt)
+			printf("\n[-------------------|%d|------------------]\n", check(str, rt));
+		while (rt->objects)
+		{
+			ft_putendl("\n[-----------------------------------------------]");
+			print_object(rt->objects);
+			ft_putendl("\n[-----------------------------------------------]");
+			rt->objects = rt->objects->next;
+		}
 		free(str);
 	}
 	return (0);

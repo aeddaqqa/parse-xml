@@ -21,7 +21,7 @@
 		<ambient>040</ambient>
 	</cone>
 	<plane>
-		<position>1,2,99999</position>
+		<position>12,99,999</position>
 		<color>65280</color>
 		<r_a>50</r_a>
 		<orientation>100,200,300</orientation>

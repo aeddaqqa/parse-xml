@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:31 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/11 03:29:48 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/11 06:00:28 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				check_openning_elem(char *s, char **tab);
 int				check_closing_elem(char *s, int n, char **tab, int *i);
 int				white_space(char *s, int *i);
 char			*get_tag(char *s, int *i);
-int				check(char *str);
+int				check(char *str, t_rt *rt);
 t_object		*stock_elements(char *str, t_tags tags, int *i);
 int				stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, t_object *obj);
 

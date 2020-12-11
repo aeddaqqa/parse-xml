@@ -6,13 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/11 01:55:36 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/11 06:01:58 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-int		check(char *str)
+int		check(char *str, t_rt *rt)
 {
 	int		i;
 	int		*z;
@@ -44,14 +44,7 @@ int		check(char *str)
 		return (-1);
 	}
 	*z = 0;
-	while (obj)
-	{
-		*z += 1;
-		ft_putendl("\n[-----------------------------------------------]");
-		print_object(obj);
-		ft_putendl("\n[-----------------------------------------------]");
-		obj = obj->next;
-	}
+	rt->objects = obj;
 	free(z);
 	return (*z);
 }

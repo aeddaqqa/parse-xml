@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/01 23:57:54 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/11 05:59:15 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,29 @@ typedef struct	s_node
 	o_component		cmp;
 }				t_node;
 
+typedef struct		s_light
+{
+	t_vect3			dir;
+	t_point			pos;
+	double			intensity;
+	double			d;
+	t_color			color;
+	t_vect3			light_reflected;
+	struct s_light	*next;
+}					t_light;
+
+typedef struct		s_cam
+{
+	t_point			o;
+	t_vect3			l;
+	t_vect3			up;
+	double			fov;
+	double			ratio;
+	double			plan_h;
+	double			plan_w;
+	struct s_cam	*next;
+}					t_cam;
+
 typedef struct	s_object
 {
 	t_type				type;
@@ -60,6 +83,8 @@ typedef struct	s_object
 typedef struct	s_rt
 {
 	t_object	*objects;
+	t_cam		*cameras;
+	t_light		*lights;
 }				t_rt;
 
 
