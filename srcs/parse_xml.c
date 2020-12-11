@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_xml.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/10 16:06:30 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/11 01:55:36 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int		check(char *str)
 {
 	int		i;
-	int		r;
 	int		*z;
 	char	*elem;
 	t_tags	tags;
+	t_object *obj;
 
 	tags = init_tab_tags();
 	if (str[0] != '<')
@@ -37,12 +37,21 @@ int		check(char *str)
 	free(elem);
 	z = malloc(sizeof(int));
 	*z = 0;
-	if ((r = stock_elements(str + i + 1 , tags, z)) < 0)
+	obj = NULL;
+	if (!(obj = stock_elements(str + i + 1 , tags, z)))
 	{
 		free(z);
 		return (-1);
 	}
-	// else
+	*z = 0;
+	while (obj)
+	{
+		*z += 1;
+		ft_putendl("\n[-----------------------------------------------]");
+		print_object(obj);
+		ft_putendl("\n[-----------------------------------------------]");
+		obj = obj->next;
+	}
 	free(z);
-	return (r);
+	return (*z);
 }

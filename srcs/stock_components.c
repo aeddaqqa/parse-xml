@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stock_components.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:45:32 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/10 16:31:50 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/11 03:28:01 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,37 @@ static	int		all_cmp_valid(t_node n)
 	return (1);
 }
 
-int		stock_elements_cmp(char *s, t_tags tags, t_node n, int *i)
+int			stock_cmp(t_object **object, char *str, int r)
+{
+	t_object *obj;
+
+	obj = *object;
+	if (r == 0)
+	{
+		if ((get_point(str, &obj->position)) < 0)
+			return(-1);
+	}
+	else if (r == 1)
+	{
+		if((get_color(str, &obj->color)) < 0)
+			return (-1);
+	}
+	else if (r == 2)
+	{
+		if ((get_raduis_a(str, obj->type, &obj->r_a)) < 0)
+			return (-1);
+	}
+	else if (r == 3)
+		obj->ambient = ft_atoi(str);
+	else if (r == 4)
+	{
+		if ((get_ori_vect(str, &obj->orientation)) < 0)
+			return (-1);
+	}
+	return (1);
+}
+
+int		stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, t_object *obj)
 {
 	int			r;
 	char		*comp;
@@ -94,9 +124,10 @@ int		stock_elements_cmp(char *s, t_tags tags, t_node n, int *i)
 	valid_cmp(&n, r);
 	ft_strdel(&comp);
 	content = inner_text(&s[*i], i);
-	// content = (void*)content;
+	if (stock_cmp(&obj, content, r) < 0)
+		return(-1);
 	free(content);
 	if (check_closing_elem(&s[*i], r, tags.components_c, i) < 0)
 		return (-1);
-	return (stock_elements_cmp(s, tags, n, i));
+	return (stock_elements_cmp(s, tags, n, i, obj));
 }

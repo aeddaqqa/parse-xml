@@ -3,84 +3,125 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 20:41:44 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/10 16:17:16 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/11 03:31:14 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-// t_object		*new_object()
-// {
-// 	t_object	*new;
+t_object		*new_object()
+{
+	t_object	*new;
 
-// 	if (!(new = malloc(sizeof(t_object))))
-// 		return (NULL);
-// 	new->type = -1;
-// 	new->position = (t_point){0, 0, 0};
-// 	new->orientation = (t_vect3){0, 0, 0};
-// 	new->color = (t_color){0, 0, 0};
-// 	new->r_a = 0;
-// 	new->ambient = 0;
-// 	new->next = NULL;
-// 	return (new);
-// }
+	if (!(new = malloc(sizeof(t_object))))
+		return (NULL);
+	new->type = -1;
+	new->position = (t_point){0, 0, 0};
+	new->orientation = (t_vect3){0, 0, 0};
+	new->color = (t_color){0, 0, 0};
+	new->r_a = 0;
+	new->ambient = 0;
+	new->next = NULL;
+	return (new);
+}
 
-// void		add_front(t_object *obj, t_object *new)
-// {
-// 	if (!obj)
-// 		obj = new;
-// 	new->next = obj;
-// 	obj = new;
-// }
+t_object		*add_front(t_object *head, t_object *new)
+{
+	if (new)
+	{
+		if (!head)
+			head = new;
+		else
+		{
+			new->next = head;
+			head = new;
+		}
+	}
+	return (head);
+}
 
-// t_point		get_point(char *s)
-// {
-// 	t_point		p;
+void		print_object(t_object *obj)
+{
+	printf("type = {%d}\n", (int)obj->type);
+	printf("position = {%lf,%lf,%lf}\n", obj->position.x, obj->position.y,obj->position.z);
+	printf("color = {%lf,%lf,%lf}\n",obj->color.x, obj->color.y, obj->color.z);
+	printf("orientation = {%lf,%lf,%lf}\n", obj->orientation.x, obj->orientation.y,obj->orientation.z);
+	printf("raduis = %lf\n", obj->r_a);
+	printf("ambient = %lf\n", obj->ambient);
+}
 
-// 	p = (t_point){0, 0, 0};
-// 	return (p);
-// }
+int		get_point(char *s, t_point *p)
+{
+	double		tab[3];
+	int			i;
+	char **tmp;
 
-// t_vect3		get_ori_vect(char *s)
-// {
-// 	t_vect3		v;
+	i = 0;
+	tmp = ft_strsplit(s, ',');
+	while (tmp[i])
+	{
+		if (i < 3)
+			tab[i] = ft_atoi(tmp[i]);
+		i++;
+	}
+	if (i != 3)
+		return (-1);
+	*p = (t_point){tab[0], tab[1], tab[2]};
+	return (1);
+}
 
-// 	v = (t_point){0, 0, 0};
-// 	return (v);
-// }
+int		get_ori_vect(char *s, t_vect3 *ori)
+{
+	char		**tmp;
+	double		tab[3];
+	int			i;
 
-// t_color		get_color(char *s)
-// {
-// 	t_vect3		c;
+	i = 0;
+	tmp = ft_strsplit(s, ',');
+	while (tmp[i])
+	{
+		if (i < 3)
+			tab[i] = ft_atoi(tmp[i]);
+		i++;
+	}
+	if (i != 3)
+		return (-1);
+	*ori = (t_vect3){tab[0], tab[1], tab[2]};
+	return (1);
+}
 
-// 	c = (t_point){0, 0, 0};
-// 	return (c);
-// }
+int		get_color(char *s, t_color *color)
+{
+	int		r;
+	int		g;
+	int		b;
+	int		c;
 
-// double		get_raduis_a(char *s, t_type type)
-// {
-// 	double	r;
+	c = ft_atoi(s);
+	r = (c >> 16) & 255;
+	g = (c >> 8) & 255;
+	b = c  & 255;
+	color->x = r;
+	color->y = g;
+	color->z = b;
+	return (1);
+}
 
-// 	r = 0;
-// 	return (r);
-// }
+int		get_raduis_a(char *s, int type, double *r_a)
+{
+	double r;
 
-// void		fill_components(int n,char *s, t_object *obj, t_type type)
-// {
-// 	if (obj->type == -1)
-// 		obj->type = type;
-// 	if (n == 0)
-// 		obj->position = get_point(s);
-// 	else if (n == 1)
-// 		obj->color = get_color(s);
-// 	else if (n == 2)
-// 		obj->orientation = get_ori_vect(s);
-// 	else if (n == 3)
-// 		obj->r_a = get_raduis_a(s, type);
-// }
+	r = ft_atoi(s);
+	if (type == 3)
+		*r_a = M_PI * r / 180;
+	else
+		*r_a = r;
+	return (1);
+}
+
 
 int		main(int ac, char **av)
 {

@@ -6,7 +6,7 @@
 #    By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 20:16:38 by aeddaqqa          #+#    #+#              #
-#    Updated: 2020/12/02 02:51:27 by aeddaqqa         ###   ########.fr        #
+#    Updated: 2020/12/11 00:04:15 by aeddaqqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 INC = includes/rt.h
-
-SDLF = -I SDL/SDL2.framework/Headers
 
 OBJ = srcs/main.o srcs/destroy.o srcs/init.o srcs/parse_xml.o\
 	srcs/read.o srcs/stock_components.o srcs/check.o\
@@ -54,14 +52,12 @@ LIBOBJ	=	libft/ft_atoi.o libft/ft_itoa.o\
 			libft/ft_strdel.o libft/ft_strlen.o libft/ft_strnstr.o\
 			libft/ft_toupper.o libft/get_next_line.o
 
-FRAM =  -framework SDL2 -F ./SDL/ -framework SDL2_mixer -F ./SDL  -framework SDL2_image -F ./SDL -rpath @loader_path/SDL -lz
-
 all : $(LIB) $(NAME)
 
 %.o : %.c $(INC)
 	$(CC) $(CFLAGS) -c -o $@ $<
 $(NAME) : $(OBJ)
-	$(CC) -o $@ $^ -I $(INC) $(LIB) $(SDLF)
+	$(CC) -o $@ $^ -I $(INC) $(LIB)
 
 $(LIB) : $(LIBOBJ)
 	@make -C libft/

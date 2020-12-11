@@ -3,63 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   stock.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/10 16:25:16 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/11 01:54:45 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-int		stock_elements(char *str, t_tags tags, int *i)
+t_object		*stock_elements(char *str, t_tags tags, int *i)
 {
 	t_node		node;
 	char		*elem;
 	char		*new;
 	int			j;
-	int			r;
+	t_object	*obj;
 
 	node = init_node();
+	obj = new_object();
 	if ((white_space(&str[*i], i)) < 0)
-		return (-1);
+		return (NULL);
 	if (!(elem = get_tag(&str[*i], i)))
-		return(-1);
+		return(NULL);
 	if ((node.type = cmp_with_objects(elem, tags.elements_o)) < 0)
 	{
 		free(elem);
 		// ft_strdel(&elem);
-		return (-1);
+		return (NULL);
 	}
-	if ((stock_elements_cmp(str, tags, node, i)) < 0)
+	obj->type = node.type;
+	if ((stock_elements_cmp(str, tags, node, i, obj)) < 0)
 	{
 		ft_strdel(&elem);
-		return (-1);
+		return (NULL);
 	}
 	j = 0;
 	ft_strdel(&elem);
 	if ((white_space(&str[*i], &j)) < 0)
-		return (-1);
+		return (NULL);
 	*i += j;
 	j = *i;
 	elem = get_tag(&str[*i], &j);
 	if (!elem)
-		return (-1);
+		return (NULL);
 	j = *i;
 	new = ft_strdup(&str[*i]);
 	if (!ft_strcmp("</scene>", new))
 	{
 		ft_strdel(&elem);
 		ft_strdel(&new);
-		return (1);
+		return (obj);
 	}
 	j = 0;
 	if ((node.type = cmp_with_objects(elem, tags.elements_o)) >= 0)
 	{
 		ft_strdel(&elem);
-		r = stock_elements(new, tags, &j);
+		t_object *tmp;
+		tmp = stock_elements(new, tags, &j);
+		if (!tmp)
+			return (NULL);
+		obj = add_front(tmp, obj);
 		ft_strdel(&new);
-		return (r);
+		return (obj);
 	}
-	return (-1);
+	return (NULL);
 }
