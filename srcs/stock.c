@@ -6,11 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/11 01:54:45 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/12 04:16:51 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
+
+
 
 t_object		*stock_elements(char *str, t_tags tags, int *i)
 {

@@ -6,7 +6,7 @@
 #    By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 20:16:38 by aeddaqqa          #+#    #+#              #
-#    Updated: 2020/12/11 00:04:15 by aeddaqqa         ###   ########.fr        #
+#    Updated: 2020/12/12 04:18:50 by aeddaqqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INC = includes/rt.h
 
 OBJ = srcs/main.o srcs/destroy.o srcs/init.o srcs/parse_xml.o\
 	srcs/read.o srcs/stock_components.o srcs/check.o\
-	srcs/parse_utilfunc.o srcs/stock.o
+	srcs/parse_utilfunc.o srcs/stock.o srcs/inner_text.o
 
 LIB = libft/libft.a
 

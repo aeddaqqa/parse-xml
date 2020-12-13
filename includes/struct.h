@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/11 05:59:15 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/13 19:10:01 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ typedef struct	s_ocomponent
 	bool	radius;
 	bool	ambient;
 }				o_component;
+
+typedef struct	s_lcomponent
+{
+	bool	position;
+	bool	color;
+	bool	intensity;
+}				l_component;
+
+typedef struct	s_ccomponent
+{
+	bool	origin;
+	bool	look_at;
+	bool	fov;
+}				c_component;
 
 typedef struct	s_node
 {
