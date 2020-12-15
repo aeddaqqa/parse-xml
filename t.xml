@@ -14,17 +14,22 @@
 		<ambient>40</ambient>
 	</sphere>
 	<cone>
-		<position>1,-1,3</position>
+		<position>10,30,60</position>
 		<color>123456789</color>
-		<r_a>50</r_a>
-		<orientation>100,200,300</orientation>
-		<ambient>040</ambient>
-	</cone>
-	<plane>
-		<position>12,99,999</position>
-		<color>65280</color>
-		<r_a>50</r_a>
+		<r_a>40</r_a>
 		<orientation>100,200,300</orientation>
 		<ambient>40</ambient>
-	</plane>
+	</cone>
+	<cone>
+		<position>10,30,60</position>
+		<color>123456789</color>
+		<r_a>40</r_a>
+		<orientation>100,200,300</orientation>
+		<ambient>40</ambient>
+	</cone>
+	<camera>
+		<origin>10,30,60</origin>
+		<fov>123456789</fov>
+		<look-at>10,30,60</look-at>
+	</camera>
 </scene>

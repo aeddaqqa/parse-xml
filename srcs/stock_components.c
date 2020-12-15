@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:45:32 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 05:25:30 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 05:41:15 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ int			stock_cmp(void **object, char *str, int r, int type)
 	else
 	{
 		obj = (t_object*)*object;
+		obj->type = type;
 		if (r == 0)
 		{
 			if ((get_point(str, &obj->position)) < 0)

@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:31 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 04:58:52 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 05:53:39 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				check_closing_elem(char *s, int n, char **tab, int *i);
 int				white_space(char *s, int *i);
 char			*get_tag(char *s, int *i);
 int				check(char *str, t_rt *rt);
-t_object		*stock_elements(char *str, t_tags tags, int *i, t_rt *rt);
+int				stock_elements(char *str, t_tags tags, int *i, t_rt *rt);
 int				stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obj);
 
 /*
@@ -45,7 +45,9 @@ t_node			init_node(void);
 t_tags			init_tab_tags(void);
 
 void			*new_object(int type);
-t_object		*add_front(t_object *head, t_object *new);
+void		add_front_obj(t_object **head, t_object *new);
+void		add_front_light(t_light **head, t_light *new);
+void		add_front_cam(t_cam **head, t_cam *new);
 void			print_object(t_object *obj);
 int		get_point(char *s, t_point *p);
 int		get_ori_vect(char *s, t_vect3 *orit);

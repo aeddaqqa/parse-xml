@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 04:48:57 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 05:32:32 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int		check(char *str, t_rt *rt)
 	z = malloc(sizeof(int));
 	*z = 0;
 	obj = NULL;
-	if (!(obj = stock_elements(str + i + 1 , tags, z, rt)))
+	if (!(stock_elements(str + i + 1 , tags, z, rt)))
 	{
 		free(z);
+		ft_putendl("\n[---------------------ERROR------------------------]");
 		return (-1);
 	}
 	*z = 0;

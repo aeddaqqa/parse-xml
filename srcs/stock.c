@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 05:11:13 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 05:56:50 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-t_object		*stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
+int		stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 {
 	t_node		node;
 	char		*elem;
@@ -24,50 +24,61 @@ t_object		*stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 
 	node = init_node();
 	if ((white_space(&str[*i], i)) < 0)
-		return (NULL);
+		return (0);
 	if (!(elem = get_tag(&str[*i], i)))
-		return(NULL);
+		return(0);
 	if ((node.type = cmp_with_objects(elem, tags.elements_o)) < 0)
 	{
 		ft_strdel(&elem);
-		return (NULL);
+		return (0);
 	}
 	obj = new_object(node.type);
 	// obj->type = node.type;
 	if ((stock_elements_cmp(str, tags, node, i, obj)) < 0)
 	{
 		ft_strdel(&elem);
-		return (NULL);
+		return (0);
 	}
 	j = 0;
 	ft_strdel(&elem);
 	if ((white_space(&str[*i], &j)) < 0)
-		return (NULL);
+		return (0);
 	*i += j;
 	j = *i;
 	elem = get_tag(&str[*i], &j);
 	if (!elem)
-		return (NULL);
+		return (0);
 	j = *i;
 	new = ft_strdup(&str[*i]);
 	if (!ft_strcmp("</scene>", new))
 	{
 		ft_strdel(&elem);
 		ft_strdel(&new);
-		return (obj);
+		if (node.type == 4)
+			add_front_cam(&rt->cameras, obj);
+		else if (node.type == 5)
+			add_front_light(&rt->lights, obj);
+		else
+			add_front_obj(&rt->objects, obj);
+		return (1);
 	}
 	j = 0;
 	if ((node.type = cmp_with_objects(elem, tags.elements_o)) >= 0)
 	{
 		ft_strdel(&elem);
-		t_object *tmp;
+		int tmp;
+		if (node.type == 4)
+			add_front_cam(&rt->cameras, obj);
+		else if (node.type == 5)
+			add_front_light(&rt->lights, obj);
+		else
+			add_front_obj(&rt->objects, obj);
 		tmp = stock_elements(new, tags, &j, rt);
 		if (!tmp)
-			return (NULL);
-		obj = add_front(tmp, obj);
-		rt->objects = obj;
+			return (0);
+			
 		ft_strdel(&new);
-		return (obj);
+		return (1);
 	}
-	return (NULL);
+	return (0);
 }

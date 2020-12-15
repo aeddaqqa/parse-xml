@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 05:07:29 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 05:53:17 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,44 @@ void		*new_object(int type)
 	return (NULL);
 }
 
-t_object		*add_front(t_object *head, t_object *new)
+void		add_front_obj(t_object **head, t_object *new)
 {
 	if (new)
 	{
-		if (!head)
-			head = new;
+		if (!*head)
+			*head = new;
 		else
 		{
-			new->next = head;
-			head = new;
+			new->next = *head;
+			*head = new;
 		}
 	}
-	return (head);
+}
+void		add_front_cam(t_cam **head, t_cam *new)
+{
+	if (new)
+	{
+		if (!*head)
+			*head = new;
+		else
+		{
+			new->next = *head;
+			*head = new;
+		}
+	}
+}
+void		add_front_light(t_light **head, t_light *new)
+{
+	if (new)
+	{
+		if (!*head)
+			*head = new;
+		else
+		{
+			new->next = *head;
+			*head = new;
+		}
+	}
 }
 
 void		print_object(t_object *obj)
