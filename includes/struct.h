@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/13 19:10:01 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 02:55:12 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 typedef struct	s_name_tags
 {
-	char *elements_o[4];
-	char *elements_c[4];
-	char *components_c[5];
-	char *components_o[5];
+	char *elements_o[6];
+	char *elements_c[6];
+	char *components_c[9];
+	char *components_o[9];
 }				t_tags;
 
 typedef struct	s_vect3
@@ -58,6 +58,8 @@ typedef struct	s_node
 {
 	int				type;
 	o_component		cmp;
+	c_component		cam;
+	l_component		lit;
 }				t_node;
 
 typedef struct		s_light

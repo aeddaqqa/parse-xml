@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 20:41:44 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/12 04:19:47 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 04:55:14 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ int		main(int ac, char **av)
 		rt = init_rt();
 		if (rt)
 			check(str, rt);
+		if (!rt->objects)
+			ft_putendl("\nkamehameha\n");
 		while (rt->objects)
 		{
+			ft_putendl("\n[-----------------------------------------------]");
 			ft_putendl("\n[-----------------------------------------------]");
 			print_object(rt->objects);
 			ft_putendl("\n[-----------------------------------------------]");

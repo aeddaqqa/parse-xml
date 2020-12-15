@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:48:58 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/10 16:33:18 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/15 02:42:58 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		cmp_with_objects(char *s, char **tab)
 	
 	i = 0;
 	if (s)
-		while (i < 4)
+		while (i < 6)
 		{
 			if (!ft_strcmp(s, tab[i]))
 				return (i);
@@ -32,7 +32,7 @@ int		check_openning_elem(char *s, char **tab)
 	int		i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 9)
 	{
 		if (!ft_strcmp(s, tab[i]))
 			return (i);

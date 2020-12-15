@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/12 04:17:09 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/15 05:07:29 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,56 @@ int		white_space(char *s, int *i)
 	return (1);
 }
 
-t_object		*new_object()
+void		*new_object(int type)
 {
-	t_object	*new;
+	t_object	*n_obj;
+	t_cam		*n_cam;
+	t_light		*n_light;
 
-	if (!(new = malloc(sizeof(t_object))))
-		return (NULL);
-	new->type = -1;
-	new->position = (t_point){0, 0, 0};
-	new->orientation = (t_vect3){0, 0, 0};
-	new->color = (t_color){0, 0, 0};
-	new->r_a = 0;
-	new->ambient = 0;
-	new->next = NULL;
-	return (new);
+	n_obj = NULL;
+	n_cam = NULL;
+	n_light = NULL;
+	if (type == 4)
+	{
+		if (!(n_cam = malloc(sizeof(t_cam))))
+			return (NULL);
+		n_cam->fov = -1;
+		n_cam->ratio = -1;
+		n_cam->plan_h = -1;
+		n_cam->plan_w = -1;
+		n_cam->o = (t_point){0, 0, 0};
+		n_cam->l = (t_vect3){0, 0, 0};
+		n_cam->up = (t_color){0, 0, 0};
+		n_cam->next = NULL;
+		return (n_cam);
+	}
+	else if (type == 5)
+	{
+		if (!(n_light = malloc(sizeof(t_light))))
+			return (NULL);
+		n_light->d = -1;
+		n_light->intensity = -1;
+		n_light->dir = (t_vect3){0, 0, 0};
+		n_light->light_reflected = (t_vect3){0, 0, 0};
+		n_light->color = (t_color){0, 0, 0};
+		n_light->pos = (t_point){0, 0, 0};
+		n_light->next = NULL;
+		return (n_light);
+	}
+	else
+	{	
+		if (!(n_obj = malloc(sizeof(t_object))))
+			return (NULL);
+		n_obj->type = -1;
+		n_obj->position = (t_point){0, 0, 0};
+		n_obj->orientation = (t_vect3){0, 0, 0};
+		n_obj->color = (t_color){0, 0, 0};
+		n_obj->r_a = 0;
+		n_obj->ambient = 0;
+		n_obj->next = NULL;
+		return (n_obj);
+	}
+	return (NULL);
 }
 
 t_object		*add_front(t_object *head, t_object *new)

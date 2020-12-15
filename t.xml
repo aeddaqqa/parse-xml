@@ -27,14 +27,4 @@
 		<orientation>100,200,300</orientation>
 		<ambient>40</ambient>
 	</plane>
-	<camera>
-		<origin></origin>
-		<look-at></look-at>
-		<fov></fov>
-	</camera>
-	<light>
-		<position></position>
-		<intensity></intensity>
-		<color></color>
-	</light>
 </scene>
