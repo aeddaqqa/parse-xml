@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 02:23:27 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 03:08:00 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/16 04:46:02 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ t_tags			init_tab_tags(void)
 	
 	tags.elements_o[0] = (char*)"<plane>";
 	tags.elements_o[1] = (char*)"<sphere>";
-	tags.elements_o[3] = (char*)"<cone>";
 	tags.elements_o[2] = (char*)"<cylinder>";
+	tags.elements_o[3] = (char*)"<cone>";
 	tags.elements_o[4] = (char*)"<camera>";
 	tags.elements_o[5] = (char*)"<light>";
 	

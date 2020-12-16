@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:45:32 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 05:41:15 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/16 05:18:14 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static	int		check_components_exist(t_node n, int type)
 {
 	if (n.type == 4)
 	{
+		if  (type != 6 && type != 5 && type != 7)
+			return (-1);
 		if (type == 6 && n.cam.origin == true)
 			return (-1);
 		else if (type == 5 && n.cam.look_at == true)
@@ -42,6 +44,8 @@ static	int		check_components_exist(t_node n, int type)
 	}
 	else if (n.type == 5)
 	{
+		if  (type != 0 && type != 8 && type != 1)
+			return (-1);
 		if (type == 0 && n.lit.position == true)
 			return (-1);
 		else if (type == 8 && n.lit.intensity == true)
@@ -51,6 +55,8 @@ static	int		check_components_exist(t_node n, int type)
 	}
 	else
 	{
+		if  (type != 0 && type != 1 && type != 2 && type != 3 && type != 4)
+			return (-1);
 		if (type == 0 && n.cmp.position == true)
 			return (-1);
 		else if (type == 1 && n.cmp.color == true)
@@ -198,13 +204,8 @@ int		stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
 	int			r;
 	char		*comp;
 	char		*content;
-	t_object	*obj;
 
 	white_space(s, i);
-	obj = NULL;
-	if (n.type < 5)
-		obj = (t_object*)obje;
-	obj->type = n.type;
 	if (!(comp = get_tag(&s[*i], i)))
 		return (-1);
 	if (!ft_strcmp(comp, tags.elements_c[n.type]))
@@ -225,10 +226,10 @@ int		stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
 	valid_cmp(&n, r);
 	ft_strdel(&comp);
 	content = inner_text(&s[*i], i);
-	if (stock_cmp(&obje, content, r, n.type) < 0)
+	if ((stock_cmp(&obje, content, r, n.type)) < 0)
 		return(-1);
 	free(content);
 	if (check_closing_elem(&s[*i], r, tags.components_c, i) < 0)
 		return (-1);
-	return (stock_elements_cmp(s, tags, n, i, obj));
+	return (stock_elements_cmp(s, tags, n, i, obje));
 }

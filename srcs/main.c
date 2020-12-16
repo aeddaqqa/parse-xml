@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 20:41:44 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 05:33:37 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/16 05:06:20 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,26 @@ int		main(int ac, char **av)
 		while (rt->objects)
 		{
 			ft_putendl("\n[-----------------------------------------------]");
-			ft_putendl("\n[-----------------------------------------------]");
+			ft_putendl("\n[---------------------Object----------------------]");
 			print_object(rt->objects);
 			ft_putendl("\n[-----------------------------------------------]");
 			rt->objects = rt->objects->next;
+		}
+		while (rt->cameras)
+		{
+			ft_putendl("\n[-----------------------------------------------]");
+			ft_putendl("\n[-----------------Camera---------------------]");
+			printf("position = {%lf,%lf,%lf}\n", rt->cameras->o.x, rt->cameras->o.y,rt->cameras->o.z);
+			ft_putendl("\n[-----------------------------------------------]");
+			rt->cameras = rt->cameras->next;
+		}
+		while (rt->lights)
+		{
+			ft_putendl("\n[-----------------------------------------------]");
+			ft_putendl("\n[-----------------Light---------------------]");
+			printf("position = {%lf,%lf,%lf}\n", rt->lights->pos.x, rt->lights->pos.y, rt->lights->pos.z);
+			ft_putendl("\n[-----------------------------------------------]");
+			rt->lights = rt->lights->next;
 		}
 		free(str);
 	}

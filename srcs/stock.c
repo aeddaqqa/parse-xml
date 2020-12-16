@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/15 05:56:50 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/16 05:10:38 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int		stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 		return (0);
 	}
 	obj = new_object(node.type);
-	// obj->type = node.type;
 	if ((stock_elements_cmp(str, tags, node, i, obj)) < 0)
 	{
 		ft_strdel(&elem);
@@ -63,7 +62,7 @@ int		stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 		return (1);
 	}
 	j = 0;
-	if ((node.type = cmp_with_objects(elem, tags.elements_o)) >= 0)
+	if ((cmp_with_objects(elem, tags.elements_o)) >= 0)
 	{
 		ft_strdel(&elem);
 		int tmp;
@@ -76,7 +75,6 @@ int		stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 		tmp = stock_elements(new, tags, &j, rt);
 		if (!tmp)
 			return (0);
-			
 		ft_strdel(&new);
 		return (1);
 	}
