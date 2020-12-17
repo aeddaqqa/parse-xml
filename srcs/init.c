@@ -6,13 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 02:23:27 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/16 04:46:02 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/17 02:44:47 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-o_component		init_component(void)
+o_component		init_ocomponent(void)
 {
 	o_component		new;
 
@@ -24,11 +24,34 @@ o_component		init_component(void)
 	return (new);
 }
 
+c_component		init_ccomponent(void)
+{
+	c_component		new;
+
+	new.look_at = false;
+	new.fov = false;
+	new.origin = false;
+	return (new);
+}
+
+l_component		init_lcomponent(void)
+{
+	l_component		new;
+
+	new.color = false;
+	new.intensity = false;
+	new.position = false;
+	return (new);
+}
+
 t_node		init_node(void)
 {
 	t_node	new;
 
 	new.type = -1;
+	new.cmp = init_ocomponent();
+	new.cam = init_ccomponent();
+	new.lit = init_lcomponent();
 	return (new);
 }
 

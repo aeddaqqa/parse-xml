@@ -6,11 +6,28 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 04:17:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/12 04:18:33 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/17 05:35:53 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
+
+void	free_tab2(char ***tab, int l)
+{
+	int		i;
+	char	**t;
+
+	t = *tab;
+	i = 0;
+	while (i < l)
+	{
+		free(t[i]);
+		t[i] = NULL;
+		i++;
+	}
+	free(t);
+	t = NULL;
+}
 
 int		get_point(char *s, t_point *p)
 {
@@ -27,7 +44,11 @@ int		get_point(char *s, t_point *p)
 		i++;
 	}
 	if (i != 3)
+	{
+		free_tab2(&tmp, i);
 		return (-1);
+	}
+	free_tab2(&tmp, i);
 	*p = (t_point){tab[0], tab[1], tab[2]};
 	return (1);
 }
@@ -47,7 +68,11 @@ int		get_ori_vect(char *s, t_vect3 *ori)
 		i++;
 	}
 	if (i != 3)
+	{
+		free_tab2(&tmp, i);
 		return (-1);
+	}
+	free_tab2(&tmp, i);
 	*ori = (t_vect3){tab[0], tab[1], tab[2]};
 	return (1);
 }

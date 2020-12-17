@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 20:41:44 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/16 05:06:20 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/17 05:39:32 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,34 @@ t_rt	*init_rt()
 	new->lights = NULL;
 	new->objects = NULL;
 	return (new);
+}
+
+void		free_rt(t_rt **rt)
+{
+	void	*tmp;
+	t_rt	*r;
+
+	r = *rt;
+	while (r->objects)
+	{
+		tmp = r->objects->next;
+		free(r->objects);
+		r->objects = tmp;
+	}
+	while (r->lights)
+	{
+		tmp = r->lights->next;
+		free(r->lights);
+		r->lights = tmp;
+	}
+	while (r->cameras)
+	{
+		tmp = r->cameras->next;
+		free(r->cameras);
+		r->cameras = tmp;
+	}
+	free(r);
+	r = NULL;
 }
 
 int		main(int ac, char **av)
@@ -45,6 +73,7 @@ int		main(int ac, char **av)
 			check(str, rt);
 		if (!rt->objects)
 			ft_putendl("\nkamehameha\n");
+		free_rt(&rt);
 		while (rt->objects)
 		{
 			ft_putendl("\n[-----------------------------------------------]");

@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/16 05:12:59 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/17 05:19:51 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		check(char *str, t_rt *rt)
 	int		*z;
 	char	*elem;
 	t_tags	tags;
-	t_object *obj;
 
 	tags = init_tab_tags();
 	if (str[0] != '<')
@@ -37,7 +36,6 @@ int		check(char *str, t_rt *rt)
 	free(elem);
 	z = malloc(sizeof(int));
 	*z = 0;
-	obj = NULL;
 	if (!(stock_elements(str + i + 1 , tags, z, rt)))
 	{
 		free(z);
