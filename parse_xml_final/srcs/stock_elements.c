@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stock.c                                            :+:      :+:    :+:   */
+/*   stock_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/02 02:51:39 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/17 05:39:19 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/19 05:21:43 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/19 05:56:38 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
+static	int			cmp_with_objects(char *s, char **tab)
+{
+	int		i;
+	
+	i = 0;
+	if (s)
+		while (i < 6)
+		{
+			if (!ft_strcmp(s, tab[i]))
+				return (i);
+			i++;
+		}
+	return (-1);
+}
 
-
-int		stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
+int					stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 {
 	t_node		node;
 	char		*elem;
@@ -62,12 +75,7 @@ int		stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 	{
 		ft_strdel(&elem);
 		ft_strdel(&new);
-		if (node.type == 4)
-			add_front_cam(&rt->cameras, obj);
-		else if (node.type == 5)
-			add_front_light(&rt->lights, obj);
-		else
-			add_front_obj(&rt->objects, obj);
+		add_front(&rt, obj, node.type);
 		return (1);
 	}
 	j = 0;
@@ -75,12 +83,7 @@ int		stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 	{
 		ft_strdel(&elem);
 		int tmp;
-		if (node.type == 4)
-			add_front_cam(&rt->cameras, obj);
-		else if (node.type == 5)
-			add_front_light(&rt->lights, obj);
-		else
-			add_front_obj(&rt->objects, obj);
+		add_front(&rt, obj, node.type);
 		tmp = stock_elements(new, tags, &j, rt);
 		if (!tmp)
 		{

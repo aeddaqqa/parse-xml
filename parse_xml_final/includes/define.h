@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 20:15:10 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/11 03:08:16 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/11/17 11:46:46 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/19 02:25:52 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
+#ifndef DEFINE_H
+# define DEFINE_H
 
+/*
+**				Error-gen
+*/
 
-# include <dirent.h>
-# include <stdbool.h>
-# include <math.h>
-# include "../libft/libft.h"
-# include "define.h"
-# include "struct.h"
-# include "functions.h"
+typedef enum	e_error
+{
+	FLAG_SAVE,
+	OPEN_FILE,
+	EMPTY_FILE,
+	MALLOC_ERROR,
+	SCENE_NOT_FOUND,
+	SYNTAX_ERROR
+}				t_error;
+
+typedef	enum	e_type
+{
+	PLANE,
+	SPHERE,
+	CYLINDER,
+	CONE
+}				t_type;
 
 #endif

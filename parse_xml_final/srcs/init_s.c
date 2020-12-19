@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/26 02:23:27 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/17 02:44:47 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/19 02:14:10 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/19 05:24:23 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-o_component		init_ocomponent(void)
+static	o_component		init_ocomponent(void)
 {
 	o_component		new;
 
@@ -24,7 +24,7 @@ o_component		init_ocomponent(void)
 	return (new);
 }
 
-c_component		init_ccomponent(void)
+static	c_component		init_ccomponent(void)
 {
 	c_component		new;
 
@@ -34,7 +34,7 @@ c_component		init_ccomponent(void)
 	return (new);
 }
 
-l_component		init_lcomponent(void)
+static	l_component		init_lcomponent(void)
 {
 	l_component		new;
 
@@ -58,21 +58,19 @@ t_node		init_node(void)
 t_tags			init_tab_tags(void)
 {
 	t_tags tags;
-	
+
 	tags.elements_o[0] = (char*)"<plane>";
 	tags.elements_o[1] = (char*)"<sphere>";
 	tags.elements_o[2] = (char*)"<cylinder>";
 	tags.elements_o[3] = (char*)"<cone>";
 	tags.elements_o[4] = (char*)"<camera>";
 	tags.elements_o[5] = (char*)"<light>";
-	
 	tags.elements_c[0] = (char*)"</plane>";
 	tags.elements_c[1] = (char*)"</sphere>";
 	tags.elements_c[2] = (char*)"</cylinder>";
 	tags.elements_c[3] = (char*)"</cone>";
 	tags.elements_c[4] = (char*)"</camera>";
 	tags.elements_c[5] = (char*)"</light>";
-	
 	tags.components_o[0] = (char*)"<position>";
 	tags.components_o[1] = (char*)"<color>";
 	tags.components_o[2] = (char*)"<r_a>";
@@ -82,7 +80,6 @@ t_tags			init_tab_tags(void)
 	tags.components_o[6] = (char*)"<origin>";
 	tags.components_o[7] = (char*)"<fov>";
 	tags.components_o[8] = (char*)"<intensity>";
-	
 	tags.components_c[0] = (char*)"</position>";
 	tags.components_c[1] = (char*)"</color>";
 	tags.components_c[2] = (char*)"</r_a>";
@@ -92,6 +89,5 @@ t_tags			init_tab_tags(void)
 	tags.components_c[6] = (char*)"</origin>";
 	tags.components_c[7] = (char*)"</fov>";
 	tags.components_c[8] = (char*)"</intensity>";
-	
 	return (tags);
 }

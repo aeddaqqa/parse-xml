@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_xml.c                                        :+:      :+:    :+:   */
+/*   main_pxml.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 03:15:56 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/17 05:19:51 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/19 02:10:36 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/19 05:20:42 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-int		check(char *str, t_rt *rt)
+static int		open_scene(char *str)
 {
 	int		i;
-	int		*z;
 	char	*elem;
-	t_tags	tags;
 
-	tags = init_tab_tags();
+	i = 0;
 	if (str[0] != '<')
 		return (-1);
 	i = 0;
@@ -34,14 +32,26 @@ int		check(char *str, t_rt *rt)
 		return (-1); 
 	}
 	free(elem);
-	z = malloc(sizeof(int));
-	*z = 0;
-	if (!(stock_elements(str + i + 1 , tags, z, rt)))
+	return (i);
+}
+
+int				parse(char *file, t_rt *rt)
+{
+	int		z;
+	int		y;
+	t_tags	tags;
+
+	if ((z = open_scene(file)) < 0)
 	{
-		free(z);
-		ft_putendl("\n[---------------------ERROR------------------------]");
+		destroy(SCENE_NOT_FOUND);
+		return (0);
+	}
+	else
+	{
+		tags = init_tab_tags();
+		y = 0;
+		if (!(stock_elements(file + z + 1 , tags, &y, rt)))
 		return (-1);
 	}
-	free(z);
-	return (*z);
+	return (0);	
 }

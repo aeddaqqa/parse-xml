@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 11:46:46 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/11/28 01:50:54 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/18 23:16:14 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/19 03:08:06 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+# include	"../includes/rt.h"
 
-/*
-**				Error-gen
-*/
-
-typedef enum	e_error
+int		main(int ac, char **av)
 {
-	OPEN_FILE,
-	EMPTY_FILE
-}				t_error;
+	char	*file;
+	t_rt	*rt;
 
-typedef	enum	e_type
-{
-	PLANE,
-	SPHERE,
-	CYLINDER,
-	CONE
-}				t_type;
-
-#endif
+	file = NULL;
+	if (ac == 2 || ac == 3)
+	{
+		if (ac == 3 && ft_strcmp(av[2], "--save"))
+		{
+			destroy(FLAG_SAVE);
+			return (0);
+		}
+		file = load_file(av[1]);
+		if (!(rt = init_rt(ac - 2)))
+			destroy(MALLOC_ERROR);
+		if (!(parse(file, rt)))
+			destroy(SYNTAX_ERROR);
+		free_rt(&rt);
+		free(file);
+	}
+	return (1);
+}

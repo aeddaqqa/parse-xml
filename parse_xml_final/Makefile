@@ -6,7 +6,7 @@
 #    By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/16 20:16:38 by aeddaqqa          #+#    #+#              #
-#    Updated: 2020/12/12 04:18:50 by aeddaqqa         ###   ########.fr        #
+#    Updated: 2020/12/19 05:55:00 by aeddaqqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 INC = includes/rt.h
 
-OBJ = srcs/main.o srcs/destroy.o srcs/init.o srcs/parse_xml.o\
-	srcs/read.o srcs/stock_components.o srcs/check.o\
-	srcs/parse_utilfunc.o srcs/stock.o srcs/inner_text.o
+OBJ = srcs/main.o srcs/load_file.o srcs/free_parse.o srcs/error_managment.o\
+srcs/init_p.o srcs/main_pxml.o srcs/init_s.o srcs/stock_elements.o\
+srcs/utilfunc.o srcs/utilfunctions.o srcs/stock_elements_cmp.o srcs/check_cmp.o
 
 LIB = libft/libft.a
 

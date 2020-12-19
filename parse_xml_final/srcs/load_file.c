@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   load_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 03:18:43 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/10 23:32:35 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/19 01:24:04 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/19 03:03:25 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,36 @@ char	*read_file(char *path)
 	str = ft_strnew(0);
 	while (get_next_line(fd, &line))
 	{
-		/*
-		** directory opendir..
-		*/
+/*
+** directory opendir..
+*/
 		tmp = str;
 		str = ft_strjoin(str, line);
 		free(tmp);
 		free(line);
 	}
 	return (str);
+}
+
+char		*load_file(char *path)
+{
+	char	*tmp;
+	char	*file;
+
+	tmp = read_file(path);
+	file = ft_strtrim(tmp);
+	if (tmp)
+		free(tmp);
+	if (!file)
+	{
+		destroy(OPEN_FILE);
+		return (NULL);
+	}
+	if (!*file)
+	{
+		free(file);		
+		destroy(EMPTY_FILE);
+		return (NULL);
+	}
+	return (file);
 }
