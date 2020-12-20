@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilfunctions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:39:07 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 05:46:14 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/19 18:59:07 by farwila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,15 @@ static	void		add_front_light(t_light **head, t_light *new)
 	}
 }
 
-void				add_front(t_rt **rt, void *new, int type)
+void				add_front(t_rt **r, void *new, int type)
 {
+	t_rt		*rt;
+
+	rt = *r;
 	if (type == 4)
-		add_front_cam((*rt)->cameras, new);
+		add_front_cam(&rt->cameras, new);
 	else if (type == 5)
-		add_front_light((*rt)->lights, new);
+		add_front_light(&rt->lights, new);
 	else
-		add_front_obj((*rt)->objects, new);
+		add_front_obj(&rt->objects, new);
 }

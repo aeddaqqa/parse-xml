@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stock_elements_cmp.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:49:45 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 06:04:56 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/19 19:14:13 by farwila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static	void		valid_forcam(t_node *n, int type)
 
 static	void		valid_forlight(t_node *n, int type)
 {
-	if (type == 6) 
-			n->cam.origin = true;
-	else if (type == 5)
-			n->cam.look_at = true;
-	else if (type == 7)
-			n->cam.fov = true;
+	if (type == 0 )
+		n->lit.position = true;
+	else if (type == 8)
+		n->lit.intensity = true;
+	else if (type == 1)
+		n->lit.color = true;
 }
 
 static	void		valid_cmp(t_node *n, int type)
@@ -38,7 +38,7 @@ static	void		valid_cmp(t_node *n, int type)
 	if (n->type == 4)
 		valid_forcam(n, type);
 	else if (n->type == 5)
-		valid_forcam(n, type);
+		valid_forlight(n, type);
 	else
 	{
 		if (type == 0) 

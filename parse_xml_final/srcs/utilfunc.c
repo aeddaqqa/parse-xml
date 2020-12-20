@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilfunc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:28:42 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 05:35:19 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/19 19:01:08 by farwila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static	t_light			*new_light()
 void					*new_object(int type)
 {
 	t_object	*n_obj;
-	t_cam		*n_cam;
 
 	n_obj = NULL;
 	if (type == 4)
