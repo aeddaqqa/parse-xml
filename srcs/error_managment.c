@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_managment.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeddaqqa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 01:04:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 02:48:31 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/21 05:24:37 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/21 05:25:06 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include	"../includes/rt.h"
-
-
+#include "../includes/rt.h"
 
 void		destroy(t_error type)
 {

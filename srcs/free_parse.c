@@ -6,11 +6,11 @@
 /*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:08:52 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 19:06:57 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/21 05:27:34 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include	"../includes/rt.h"
+#include "../includes/rt.h"
 
 void		free_rt(t_rt **rt)
 {

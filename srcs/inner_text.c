@@ -6,13 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 03:37:25 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 03:52:59 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:30:16 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
-char		*inner_text(char *s, int *j)
+char			*inner_text(char *s, int *j)
 {
 	char	*new;
 	int		i;
@@ -29,7 +29,7 @@ char		*inner_text(char *s, int *j)
 	return (new);
 }
 
-static	int		stock_cmp_cam(void **object, char *str, int r)
+static int		stock_cmp_cam(void **object, char *str, int r)
 {
 	t_cam		*cam;
 
@@ -37,11 +37,11 @@ static	int		stock_cmp_cam(void **object, char *str, int r)
 	if (r == 6)
 	{
 		if ((get_point(str, &cam->o)) < 0)
-			return(-1);
+			return (-1);
 	}
 	else if (r == 5)
 	{
-		if((get_point(str, &cam->l)) < 0)
+		if ((get_point(str, &cam->l)) < 0)
 			return (-1);
 	}
 	else if (r == 3)
@@ -57,11 +57,11 @@ static	int		stock_cmp_light(void **object, char *str, int r)
 	if (r == 0)
 	{
 		if ((get_point(str, &light->pos)) < 0)
-			return(-1);
+			return (-1);
 	}
 	else if (r == 1)
 	{
-		if((get_color(str, &light->color)) < 0)
+		if ((get_color(str, &light->color)) < 0)
 			return (-1);
 	}
 	else if (r == 8)
@@ -69,7 +69,7 @@ static	int		stock_cmp_light(void **object, char *str, int r)
 	return (1);
 }
 
-static	int			stock_cmp_obj(void **object, char *str, int r, int type)
+static int		stock_cmp_obj(void **object, char *str, int r, int type)
 {
 	t_object	*obj;
 
@@ -78,11 +78,11 @@ static	int			stock_cmp_obj(void **object, char *str, int r, int type)
 	if (r == 0)
 	{
 		if ((get_point(str, &obj->position)) < 0)
-			return(-1);
+			return (-1);
 	}
 	else if (r == 1)
 	{
-		if((get_color(str, &obj->color)) < 0)
+		if ((get_color(str, &obj->color)) < 0)
 			return (-1);
 	}
 	else if (r == 2)
@@ -100,7 +100,7 @@ static	int			stock_cmp_obj(void **object, char *str, int r, int type)
 	return (1);
 }
 
-int			stock_cmp(void **object, char *str, int r, int type)
+int				stock_cmp(void **object, char *str, int r, int type)
 {
 	if (type == 4)
 		return (stock_cmp_cam(object, str, r));

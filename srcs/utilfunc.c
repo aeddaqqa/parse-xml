@@ -6,11 +6,11 @@
 /*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:28:42 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 19:01:08 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/21 05:35:39 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
 char					*get_tag(char *s, int *i)
 {
@@ -36,9 +36,9 @@ int						white_space(char *s, int *i)
 	return (1);
 }
 
-static	t_cam			*new_cam()
+static t_cam			*new_cam(void)
 {
-	t_cam		*n_cam;
+	t_cam	*n_cam;
 
 	if (!(n_cam = malloc(sizeof(t_cam))))
 		return (NULL);
@@ -53,7 +53,7 @@ static	t_cam			*new_cam()
 	return (n_cam);
 }
 
-static	t_light			*new_light()
+static t_light			*new_light(void)
 {
 	t_light		*n_light;
 
@@ -79,7 +79,7 @@ void					*new_object(int type)
 	else if (type == 5)
 		return (new_light());
 	else
-	{	
+	{
 		if (!(n_obj = malloc(sizeof(t_object))))
 			return (NULL);
 		n_obj->type = -1;

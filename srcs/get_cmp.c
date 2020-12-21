@@ -6,13 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 03:56:52 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 03:57:44 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:37:07 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
-static	void		free_tab2(char ***tab, int l)
+static void		free_tab2(char ***tab, int l)
 {
 	int		i;
 	char	**t;
@@ -29,11 +29,11 @@ static	void		free_tab2(char ***tab, int l)
 	t = NULL;
 }
 
-int		get_point(char *s, t_point *p)
+int				get_point(char *s, t_point *p)
 {
 	double		tab[3];
 	int			i;
-	char **tmp;
+	char		**tmp;
 
 	i = 0;
 	tmp = ft_strsplit(s, ',');
@@ -53,7 +53,7 @@ int		get_point(char *s, t_point *p)
 	return (1);
 }
 
-int		get_ori_vect(char *s, t_vect3 *ori)
+int				get_ori_vect(char *s, t_vect3 *ori)
 {
 	char		**tmp;
 	double		tab[3];
@@ -77,7 +77,7 @@ int		get_ori_vect(char *s, t_vect3 *ori)
 	return (1);
 }
 
-int		get_color(char *s, t_color *color)
+int				get_color(char *s, t_color *color)
 {
 	int		r;
 	int		g;
@@ -87,14 +87,14 @@ int		get_color(char *s, t_color *color)
 	c = ft_atoi(s);
 	r = (c >> 16) & 255;
 	g = (c >> 8) & 255;
-	b = c  & 255;
+	b = c & 255;
 	color->x = r;
 	color->y = g;
 	color->z = b;
 	return (1);
 }
 
-int		get_raduis_a(char *s, int type, double *r_a)
+int				get_raduis_a(char *s, int type, double *r_a)
 {
 	double r;
 

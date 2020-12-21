@@ -6,11 +6,11 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:10:36 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 04:01:24 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:41:20 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
 static int		open_scene(char *str)
 {
@@ -29,7 +29,7 @@ static int		open_scene(char *str)
 	if (ft_strcmp(elem, "<scene>"))
 	{
 		free(elem);
-		return (-1); 
+		return (-1);
 	}
 	free(elem);
 	return (i);
@@ -50,8 +50,8 @@ int				parse(char *file, t_rt *rt)
 	{
 		tags = init_tab_tags();
 		y = 0;
-		if (!(stock_elements(file + z + 1 , tags, &y, rt)))
+		if (!(stock_elements(file + z + 1, tags, &y, rt)))
 			return (0);
 	}
-	return (1);	
+	return (1);
 }

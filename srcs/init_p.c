@@ -6,11 +6,11 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:42:30 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 03:06:12 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:28:09 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
 t_rt		*init_rt(bool save)
 {

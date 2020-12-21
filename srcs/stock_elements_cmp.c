@@ -6,26 +6,25 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:49:45 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:06:03 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:45:00 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
-
-static	void		valid_forcam(t_node *n, int type)
+static	void			valid_forcam(t_node *n, int type)
 {
-	if (type == 6) 
-			n->cam.origin = true;
+	if (type == 6)
+		n->cam.origin = true;
 	else if (type == 5)
-			n->cam.look_at = true;
+		n->cam.look_at = true;
 	else if (type == 7)
-			n->cam.fov = true;
+		n->cam.fov = true;
 }
 
-static	void		valid_forlight(t_node *n, int type)
+static	void			valid_forlight(t_node *n, int type)
 {
-	if (type == 0 )
+	if (type == 0)
 		n->lit.position = true;
 	else if (type == 8)
 		n->lit.intensity = true;
@@ -33,7 +32,7 @@ static	void		valid_forlight(t_node *n, int type)
 		n->lit.color = true;
 }
 
-static	void		valid_cmp(t_node *n, int type)
+static	void			valid_cmp(t_node *n, int type)
 {
 	if (n->type == 4)
 		valid_forcam(n, type);
@@ -41,7 +40,7 @@ static	void		valid_cmp(t_node *n, int type)
 		valid_forlight(n, type);
 	else
 	{
-		if (type == 0) 
+		if (type == 0)
 			n->cmp.position = true;
 		else if (type == 1)
 			n->cmp.color = true;
@@ -54,28 +53,28 @@ static	void		valid_cmp(t_node *n, int type)
 	}
 }
 
-static	int		all_cmp_valid(t_node n)
+static	int				all_cmp_valid(t_node n)
 {
-	if (n.type == 4) 
+	if (n.type == 4)
 	{
 		if ((n.cam.fov == false || n.cam.look_at == false ||
-		n.cam.origin == false))
+					n.cam.origin == false))
 			return (-1);
 	}
 	else if (n.type == 5)
 	{
 		if ((n.lit.color == false || n.lit.intensity == false
-		|| n.lit.position == false))
+					|| n.lit.position == false))
 			return (-1);
 	}
 	else if (n.cmp.ambient == false || n.cmp.color == false ||
-	n.cmp.orientation == false ||n.cmp.radius == false ||
-	n.cmp.position == false)
+			n.cmp.orientation == false || n.cmp.radius == false ||
+			n.cmp.position == false)
 		return (-1);
 	return (1);
 }
 
-static int		return_val(int v, t_node n, char *comp)
+static int				return_val(int v, t_node n, char *comp)
 {
 	ft_strdel(&comp);
 	if (v == 1)
@@ -85,7 +84,8 @@ static int		return_val(int v, t_node n, char *comp)
 	else
 		return (-1);
 }
-int     stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
+
+int						stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
 {
 	int			r;
 	char		*comp;
@@ -102,11 +102,11 @@ int     stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
 		return (return_val(3, n, comp));
 	valid_cmp(&n, r);
 	ft_strdel(&comp);
-	if ((!(content = inner_text(&s[*i], i)))|| (stock_cmp(&obje, content, r, n.type)) < 0)
+	if ((!(content = inner_text(&s[*i], i))) || (stock_cmp(&obje, content, r, n.type)) < 0)
 	{
 		if (content)
 			free(content);
-		return(-1);
+		return (-1);
 	}
 	free(content);
 	if (check_closing_elem(&s[*i], r, tags.components_c, i) < 0)

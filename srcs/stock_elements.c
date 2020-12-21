@@ -6,16 +6,16 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:21:43 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:09:34 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:34:11 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
-static	int			cmp_with_objects(char *s, char **tab)
+static int			cmp_with_objects(char *s, char **tab)
 {
-	int		i;
-	
+	int	i;
+
 	i = 0;
 	if (s)
 		while (i < 6)
@@ -38,12 +38,12 @@ int					stock_elements(char *str, t_tags tags, int *i, t_rt *rt)
 	if ((white_space(&str[*i], i)) < 0)
 		return (0);
 	if (!(elem = get_tag(&str[*i], i)))
-		return(0);
+		return (0);
 	if (!ft_strcmp("</scene>", elem))
 	{
 		ft_strdel(&elem);
 		if (str[*i])
-			return(0);
+			return (0);
 		return (1);
 	}
 	if ((node.type = cmp_with_objects(elem, tags.elements_o)) < 0)

@@ -6,11 +6,11 @@
 /*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:39:07 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 18:59:07 by farwila          ###   ########.fr       */
+/*   Updated: 2020/12/21 05:45:33 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
 static	void		add_front_obj(t_object **head, t_object *new)
 {
@@ -25,6 +25,7 @@ static	void		add_front_obj(t_object **head, t_object *new)
 		}
 	}
 }
+
 static	void		add_front_cam(t_cam **head, t_cam *new)
 {
 	if (new)
@@ -38,6 +39,7 @@ static	void		add_front_cam(t_cam **head, t_cam *new)
 		}
 	}
 }
+
 static	void		add_front_light(t_light **head, t_light *new)
 {
 	if (new)

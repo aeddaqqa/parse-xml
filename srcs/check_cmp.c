@@ -6,13 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:54:16 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 06:01:58 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:27:04 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
-int		check_openning_elem(char *s, char **tab)
+int				check_openning_elem(char *s, char **tab)
 {
 	int		i;
 
@@ -26,7 +26,7 @@ int		check_openning_elem(char *s, char **tab)
 	return (-1);
 }
 
-int		check_closing_elem(char *s, int n, char **tab, int *i)
+int				check_closing_elem(char *s, int n, char **tab, int *i)
 {
 	char	*tag;
 
@@ -41,9 +41,9 @@ int		check_closing_elem(char *s, int n, char **tab, int *i)
 	return (-1);
 }
 
-static	int		check_cmp_exist_forcam(t_node n, int type)
+static int		check_cmp_exist_forcam(t_node n, int type)
 {
-	if  (type != 6 && type != 5 && type != 7)
+	if (type != 6 && type != 5 && type != 7)
 		return (-1);
 	if (type == 6 && n.cam.origin == true)
 		return (-1);
@@ -54,9 +54,9 @@ static	int		check_cmp_exist_forcam(t_node n, int type)
 	return (1);
 }
 
-static	int		check_cmp_exist_forobj(t_node n, int type)
+static int		check_cmp_exist_forobj(t_node n, int type)
 {
-	if  (type != 0 && type != 1 && type != 2 && type != 3 && type != 4)
+	if (type != 0 && type != 1 && type != 2 && type != 3 && type != 4)
 		return (-1);
 	if (type == 0 && n.cmp.position == true)
 		return (-1);
@@ -71,13 +71,13 @@ static	int		check_cmp_exist_forobj(t_node n, int type)
 	return (1);
 }
 
-int		check_components_exist(t_node n, int type)
+int				check_components_exist(t_node n, int type)
 {
 	if (n.type == 4)
 		return (check_cmp_exist_forcam(n, type));
 	else if (n.type == 5)
 	{
-		if  (type != 0 && type != 8 && type != 1)
+		if (type != 0 && type != 8 && type != 1)
 			return (-1);
 		if (type == 0 && n.lit.position == true)
 			return (-1);

@@ -6,13 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:14:10 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 05:24:23 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:37:56 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
-static	o_component		init_ocomponent(void)
+static o_component			init_ocomponent(void)
 {
 	o_component		new;
 
@@ -24,7 +24,7 @@ static	o_component		init_ocomponent(void)
 	return (new);
 }
 
-static	c_component		init_ccomponent(void)
+static c_component			init_ccomponent(void)
 {
 	c_component		new;
 
@@ -34,7 +34,7 @@ static	c_component		init_ccomponent(void)
 	return (new);
 }
 
-static	l_component		init_lcomponent(void)
+static l_component			init_lcomponent(void)
 {
 	l_component		new;
 
@@ -44,7 +44,7 @@ static	l_component		init_lcomponent(void)
 	return (new);
 }
 
-t_node		init_node(void)
+t_node						init_node(void)
 {
 	t_node	new;
 
@@ -55,7 +55,7 @@ t_node		init_node(void)
 	return (new);
 }
 
-t_tags			init_tab_tags(void)
+t_tags						init_tab_tags(void)
 {
 	t_tags tags;
 

@@ -6,13 +6,13 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:24:04 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 03:03:25 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:40:22 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+#include "../includes/rt.h"
 
-char	*read_file(char *path)
+char		*read_file(char *path)
 {
 	char	*line;
 	int		fd;
@@ -31,9 +31,6 @@ char	*read_file(char *path)
 	str = ft_strnew(0);
 	while (get_next_line(fd, &line))
 	{
-/*
-** directory opendir..
-*/
 		tmp = str;
 		str = ft_strjoin(str, line);
 		free(tmp);
@@ -58,7 +55,7 @@ char		*load_file(char *path)
 	}
 	if (!*file)
 	{
-		free(file);		
+		free(file);
 		destroy(EMPTY_FILE);
 		return (NULL);
 	}
