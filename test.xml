@@ -17,11 +17,10 @@
 		<color>123456789</color>
 		<r_a>40</r_a>
 		<orientation>100,200,300</orientation>
-		<ambent>40</ambient>
+		<ambient>40</ambient>
 	</sphere>
-	<light>
-		<position>0010,30,60</position>
-		<color>121212</color>
+	<light><position>0010,30,60</position>
+	<color>121212</color>
 		<intensity>40</intensity>
 	</light>
 	<camera>
@@ -30,7 +29,7 @@
 		<look-at>10,30,60</look-at>
 	</camera>
 	<sphere>
-		<position>-10010,30,60</position>
+		<position>-100,1030,60</position>
 		<color>123456789</color>
 		<r_a>40</r_a>
 		<orientation>100,200,300</orientation>

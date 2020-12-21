@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:46:46 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/11/28 01:50:54 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2020/12/19 02:25:52 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 
 typedef enum	e_error
 {
+	FLAG_SAVE,
 	OPEN_FILE,
-	EMPTY_FILE
+	EMPTY_FILE,
+	MALLOC_ERROR,
+	SCENE_NOT_FOUND,
+	SYNTAX_ERROR
 }				t_error;
 
 typedef	enum	e_type

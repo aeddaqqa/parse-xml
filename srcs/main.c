@@ -5,100 +5,74 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 20:41:44 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/17 05:39:32 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/18 23:16:14 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/21 05:16:27 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/rt.h"
+# include	"../includes/rt.h"
 
-
-t_rt	*init_rt()
+void		print_rt(t_rt *rt)
 {
-	t_rt	*new;
-
-	if (!(new = malloc(sizeof(t_rt))))
-		return (NULL);
-	new->cameras = NULL;
-	new->lights = NULL;
-	new->objects = NULL;
-	return (new);
-}
-
-void		free_rt(t_rt **rt)
-{
-	void	*tmp;
-	t_rt	*r;
-
-	r = *rt;
-	while (r->objects)
+	while (rt->objects)
 	{
-		tmp = r->objects->next;
-		free(r->objects);
-		r->objects = tmp;
+		ft_putendl("\n[-------------------------------------------------]");
+		ft_putendl("\n[---------------------Object----------------------]");
+		printf("type = {%d}\n", (int)rt->objects->type);
+		printf("position = {%lf,%lf,%lf}\n", rt->objects->position.x, rt->objects->position.y,rt->objects->position.z);
+		printf("color = {%lf,%lf,%lf}\n",rt->objects->color.x, rt->objects->color.y, rt->objects->color.z);
+		printf("orientation = {%lf,%lf,%lf}\n", rt->objects->orientation.x, rt->objects->orientation.y,rt->objects->orientation.z);
+		printf("raduis = %lf\n", rt->objects->r_a);
+		printf("ambient = %lf\n", rt->objects->ambient);
+		ft_putendl("\n[-----------------------------------------------]");
+		rt->objects = rt->objects->next;
 	}
-	while (r->lights)
+	while (rt->cameras)
 	{
-		tmp = r->lights->next;
-		free(r->lights);
-		r->lights = tmp;
+		ft_putendl("\n[-------------------------------------------------]");
+		ft_putendl("\n[---------------------Camera----------------------]");
+		printf("position = {%lf,%lf,%lf}\n", rt->cameras->o.x, rt->cameras->o.y,rt->cameras->o.z);
+		printf("look-at = {%lf,%lf,%lf}\n",rt->cameras->l.x, rt->cameras->l.y, rt->cameras->l.z);
+		printf("fov = %lf\n", rt->cameras->fov);
+		ft_putendl("\n[-----------------------------------------------]");
+		rt->cameras = rt->cameras->next;
 	}
-	while (r->cameras)
+	while (rt->lights)
 	{
-		tmp = r->cameras->next;
-		free(r->cameras);
-		r->cameras = tmp;
+		ft_putendl("\n[-------------------------------------------------]");
+		ft_putendl("\n[---------------------Light-----------------------]");
+		printf("position = {%lf,%lf,%lf}\n", rt->lights->pos.x, rt->lights->pos.y, rt->lights->pos.z);
+		printf("color = {%lf,%lf,%lf}\n",rt->lights->color.x, rt->lights->color.y, rt->lights->color.z);
+		printf("intensity = %lf\n", rt->lights->intensity);
+		ft_putendl("\n[-----------------------------------------------]");
+		rt->lights = rt->lights->next;
 	}
-	free(r);
-	r = NULL;
 }
 
 int		main(int ac, char **av)
 {
-	char	*str;
-	char	*tmp;
+	char	*file;
 	t_rt	*rt;
 
-	if (ac == 2)
+	file = NULL;
+	if (ac == 2 || ac == 3)
 	{
-		tmp = read_file(av[1]);
-		str = ft_strtrim(tmp);
-		free(tmp);
-		if (!str)
-			destroy(OPEN_FILE);
-		if (!*str)
-			destroy(EMPTY_FILE);
-		rt = init_rt();
-		if (rt)
-			check(str, rt);
-		if (!rt->objects)
-			ft_putendl("\nkamehameha\n");
+		if (ac == 3 && ft_strcmp(av[2], "--save"))
+		{
+			destroy(FLAG_SAVE);
+			return (0);
+		}
+		if (!(file = load_file(av[1])))
+			exit(0);
+		if (!(rt = init_rt(ac - 2)))
+			destroy(MALLOC_ERROR);
+		if (!(parse(file, rt)))
+			destroy(SYNTAX_ERROR);
+		// print_rt(rt);
 		free_rt(&rt);
-		while (rt->objects)
-		{
-			ft_putendl("\n[-----------------------------------------------]");
-			ft_putendl("\n[---------------------Object----------------------]");
-			print_object(rt->objects);
-			ft_putendl("\n[-----------------------------------------------]");
-			rt->objects = rt->objects->next;
-		}
-		while (rt->cameras)
-		{
-			ft_putendl("\n[-----------------------------------------------]");
-			ft_putendl("\n[-----------------Camera---------------------]");
-			printf("position = {%lf,%lf,%lf}\n", rt->cameras->o.x, rt->cameras->o.y,rt->cameras->o.z);
-			ft_putendl("\n[-----------------------------------------------]");
-			rt->cameras = rt->cameras->next;
-		}
-		while (rt->lights)
-		{
-			ft_putendl("\n[-----------------------------------------------]");
-			ft_putendl("\n[-----------------Light---------------------]");
-			printf("position = {%lf,%lf,%lf}\n", rt->lights->pos.x, rt->lights->pos.y, rt->lights->pos.z);
-			ft_putendl("\n[-----------------------------------------------]");
-			rt->lights = rt->lights->next;
-		}
-		free(str);
+		free(file);
 	}
-	return (0);
+	else
+		ft_putendl("./rt [fileName]");
+	return (1);
 }

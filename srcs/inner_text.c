@@ -5,103 +5,108 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/12 04:17:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/17 05:35:53 by aeddaqqa         ###   ########.fr       */
+/*   Created: 2020/12/21 03:37:25 by aeddaqqa          #+#    #+#             */
+/*   Updated: 2020/12/21 03:52:59 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rt.h"
 
-void	free_tab2(char ***tab, int l)
+char		*inner_text(char *s, int *j)
 {
+	char	*new;
 	int		i;
-	char	**t;
 
-	t = *tab;
+	if (!s || !*s)
+		return (NULL);
 	i = 0;
-	while (i < l)
-	{
-		free(t[i]);
-		t[i] = NULL;
+	while (s[i] && s[i] != '<')
 		i++;
-	}
-	free(t);
-	t = NULL;
+	if (!s[i])
+		return (NULL);
+	new = ft_strsub(s, 0, i);
+	*j += i;
+	return (new);
 }
 
-int		get_point(char *s, t_point *p)
+static	int		stock_cmp_cam(void **object, char *str, int r)
 {
-	double		tab[3];
-	int			i;
-	char **tmp;
+	t_cam		*cam;
 
-	i = 0;
-	tmp = ft_strsplit(s, ',');
-	while (tmp[i])
+	cam = (t_cam*)*object;
+	if (r == 6)
 	{
-		if (i < 3)
-			tab[i] = ft_atoi(tmp[i]);
-		i++;
+		if ((get_point(str, &cam->o)) < 0)
+			return(-1);
 	}
-	if (i != 3)
+	else if (r == 5)
 	{
-		free_tab2(&tmp, i);
-		return (-1);
+		if((get_point(str, &cam->l)) < 0)
+			return (-1);
 	}
-	free_tab2(&tmp, i);
-	*p = (t_point){tab[0], tab[1], tab[2]};
+	else if (r == 3)
+		cam->fov = ft_atoi(str);
 	return (1);
 }
 
-int		get_ori_vect(char *s, t_vect3 *ori)
+static	int		stock_cmp_light(void **object, char *str, int r)
 {
-	char		**tmp;
-	double		tab[3];
-	int			i;
+	t_light		*light;
 
-	i = 0;
-	tmp = ft_strsplit(s, ',');
-	while (tmp[i])
+	light = (t_light*)*object;
+	if (r == 0)
 	{
-		if (i < 3)
-			tab[i] = ft_atoi(tmp[i]);
-		i++;
+		if ((get_point(str, &light->pos)) < 0)
+			return(-1);
 	}
-	if (i != 3)
+	else if (r == 1)
 	{
-		free_tab2(&tmp, i);
-		return (-1);
+		if((get_color(str, &light->color)) < 0)
+			return (-1);
 	}
-	free_tab2(&tmp, i);
-	*ori = (t_vect3){tab[0], tab[1], tab[2]};
+	else if (r == 8)
+		light->intensity = ft_atoi(str);
 	return (1);
 }
 
-int		get_color(char *s, t_color *color)
+static	int			stock_cmp_obj(void **object, char *str, int r, int type)
 {
-	int		r;
-	int		g;
-	int		b;
-	int		c;
+	t_object	*obj;
 
-	c = ft_atoi(s);
-	r = (c >> 16) & 255;
-	g = (c >> 8) & 255;
-	b = c  & 255;
-	color->x = r;
-	color->y = g;
-	color->z = b;
+	obj = (t_object*)*object;
+	obj->type = type;
+	if (r == 0)
+	{
+		if ((get_point(str, &obj->position)) < 0)
+			return(-1);
+	}
+	else if (r == 1)
+	{
+		if((get_color(str, &obj->color)) < 0)
+			return (-1);
+	}
+	else if (r == 2)
+	{
+		if ((get_raduis_a(str, obj->type, &obj->r_a)) < 0)
+			return (-1);
+	}
+	else if (r == 3)
+		obj->ambient = ft_atoi(str);
+	else if (r == 4)
+	{
+		if ((get_ori_vect(str, &obj->orientation)) < 0)
+			return (-1);
+	}
 	return (1);
 }
 
-int		get_raduis_a(char *s, int type, double *r_a)
+int			stock_cmp(void **object, char *str, int r, int type)
 {
-	double r;
-
-	r = ft_atoi(s);
-	if (type == 3)
-		*r_a = M_PI * r / 180;
+	if (type == 4)
+		return (stock_cmp_cam(object, str, r));
+	else if (type == 5)
+		return (stock_cmp_light(object, str, r));
 	else
-		*r_a = r;
+		return (stock_cmp_obj(object, str, r, type));
 	return (1);
 }
