@@ -6,22 +6,22 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:47:47 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/18 23:21:12 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/21 15:40:08 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct	s_vect3
+typedef struct		s_vect3
 {
 	double		x;
 	double		y;
 	double		z;
-}				t_vect3;
+}					t_vect3;
 
-typedef	t_vect3	t_point;
-typedef	t_vect3	t_color;
+typedef	t_vect3		t_point;
+typedef	t_vect3		t_color;
 
 typedef struct		s_light
 {
@@ -53,7 +53,6 @@ typedef struct		s_object
 	t_color			color;
 	t_vect3			orientation;
 	double			r_a;
-	double			ambient;
 	struct s_object	*next;
 }					t_object;
 
@@ -63,8 +62,7 @@ typedef struct		s_rt
 	t_object		*objects;
 	t_cam			*cameras;
 	t_light			*lights;
+	double			ambient;
 }					t_rt;
-
-
 
 #endif

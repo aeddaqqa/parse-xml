@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:54:16 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:27:04 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/20 17:15:35 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,47 +43,45 @@ int				check_closing_elem(char *s, int n, char **tab, int *i)
 
 static int		check_cmp_exist_forcam(t_node n, int type)
 {
-	if (type != 6 && type != 5 && type != 7)
+	if (type != ORIGIN && type != LOOK_AT && type != FOV)
 		return (-1);
-	if (type == 6 && n.cam.origin == true)
+	if (type == ORIGIN && n.cam.origin == true)
 		return (-1);
-	else if (type == 5 && n.cam.look_at == true)
+	else if (type == LOOK_AT && n.cam.look_at == true)
 		return (-1);
-	else if (type == 7 && n.cam.fov == true)
+	else if (type == FOV && n.cam.fov == true)
 		return (-1);
 	return (1);
 }
 
 static int		check_cmp_exist_forobj(t_node n, int type)
 {
-	if (type != 0 && type != 1 && type != 2 && type != 3 && type != 4)
+	if (type != POSITION && type != COLOR && type != R_A && type != ORIENTATION)
 		return (-1);
-	if (type == 0 && n.cmp.position == true)
+	if (type == POSITION && n.cmp.position == true)
 		return (-1);
-	else if (type == 1 && n.cmp.color == true)
+	else if (type == COLOR && n.cmp.color == true)
 		return (-1);
-	else if (type == 2 && n.cmp.radius == true)
+	else if (type == R_A && n.cmp.radius == true)
 		return (-1);
-	else if (type == 3 && n.cmp.ambient == true)
-		return (-1);
-	else if (type == 4 && n.cmp.orientation == true)
+	else if (type == ORIENTATION && n.cmp.orientation == true)
 		return (-1);
 	return (1);
 }
 
 int				check_components_exist(t_node n, int type)
 {
-	if (n.type == 4)
+	if (n.type == CAMERA)
 		return (check_cmp_exist_forcam(n, type));
-	else if (n.type == 5)
+	else if (n.type == LIGHT)
 	{
-		if (type != 0 && type != 8 && type != 1)
+		if (type != POSITION && type != INTENSITY && type != COLOR)
 			return (-1);
-		if (type == 0 && n.lit.position == true)
+		if (type == POSITION && n.lit.position == true)
 			return (-1);
-		else if (type == 8 && n.lit.intensity == true)
+		else if (type == INTENSITY && n.lit.intensity == true)
 			return (-1);
-		else if (type == 1 && n.lit.color == true)
+		else if (type == COLOR && n.lit.color == true)
 			return (-1);
 	}
 	else

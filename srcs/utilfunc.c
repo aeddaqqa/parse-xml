@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilfunc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farwila <farwila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:28:42 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:35:39 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/20 17:58:06 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ void					*new_object(int type)
 	t_object	*n_obj;
 
 	n_obj = NULL;
-	if (type == 4)
+	if (type == CAMERA)
 		return (new_cam());
-	else if (type == 5)
+	else if (type == LIGHT)
 		return (new_light());
-	else
+	else if (type != AMBIENT)
 	{
 		if (!(n_obj = malloc(sizeof(t_object))))
 			return (NULL);
@@ -87,7 +87,6 @@ void					*new_object(int type)
 		n_obj->orientation = (t_vect3){0, 0, 0};
 		n_obj->color = (t_color){0, 0, 0};
 		n_obj->r_a = 0;
-		n_obj->ambient = 0;
 		n_obj->next = NULL;
 		return (n_obj);
 	}

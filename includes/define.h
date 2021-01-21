@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:46:46 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/19 02:25:52 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/20 18:36:20 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 /*
 **				Error-gen
 */
+
+#define W 800
+#define H 800
 
 typedef enum	e_error
 {
@@ -32,7 +35,10 @@ typedef	enum	e_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
-	CONE
+	CONE,
+	CAMERA,
+	LIGHT,
+	AMBIENT
 }				t_type;
 
 #endif

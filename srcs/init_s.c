@@ -6,17 +6,16 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:14:10 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:37:56 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/20 18:08:42 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rt.h"
 
-static o_component			init_ocomponent(void)
+static t_ocomponent			init_ocomponent(void)
 {
-	o_component		new;
+	t_ocomponent		new;
 
-	new.ambient = false;
 	new.color = false;
 	new.position = false;
 	new.radius = false;
@@ -24,9 +23,9 @@ static o_component			init_ocomponent(void)
 	return (new);
 }
 
-static c_component			init_ccomponent(void)
+static t_ccomponent			init_ccomponent(void)
 {
-	c_component		new;
+	t_ccomponent		new;
 
 	new.look_at = false;
 	new.fov = false;
@@ -34,9 +33,9 @@ static c_component			init_ccomponent(void)
 	return (new);
 }
 
-static l_component			init_lcomponent(void)
+static t_lcomponent			init_lcomponent(void)
 {
-	l_component		new;
+	t_lcomponent		new;
 
 	new.color = false;
 	new.intensity = false;
@@ -59,35 +58,36 @@ t_tags						init_tab_tags(void)
 {
 	t_tags tags;
 
-	tags.elements_o[0] = (char*)"<plane>";
-	tags.elements_o[1] = (char*)"<sphere>";
-	tags.elements_o[2] = (char*)"<cylinder>";
-	tags.elements_o[3] = (char*)"<cone>";
-	tags.elements_o[4] = (char*)"<camera>";
-	tags.elements_o[5] = (char*)"<light>";
-	tags.elements_c[0] = (char*)"</plane>";
-	tags.elements_c[1] = (char*)"</sphere>";
-	tags.elements_c[2] = (char*)"</cylinder>";
-	tags.elements_c[3] = (char*)"</cone>";
-	tags.elements_c[4] = (char*)"</camera>";
-	tags.elements_c[5] = (char*)"</light>";
-	tags.components_o[0] = (char*)"<position>";
-	tags.components_o[1] = (char*)"<color>";
-	tags.components_o[2] = (char*)"<r_a>";
-	tags.components_o[3] = (char*)"<ambient>";
-	tags.components_o[4] = (char*)"<orientation>";
-	tags.components_o[5] = (char*)"<look-at>";
-	tags.components_o[6] = (char*)"<origin>";
-	tags.components_o[7] = (char*)"<fov>";
-	tags.components_o[8] = (char*)"<intensity>";
-	tags.components_c[0] = (char*)"</position>";
-	tags.components_c[1] = (char*)"</color>";
-	tags.components_c[2] = (char*)"</r_a>";
-	tags.components_c[3] = (char*)"</ambient>";
-	tags.components_c[4] = (char*)"</orientation>";
-	tags.components_c[5] = (char*)"</look-at>";
-	tags.components_c[6] = (char*)"</origin>";
-	tags.components_c[7] = (char*)"</fov>";
-	tags.components_c[8] = (char*)"</intensity>";
+	tags.elements_o[PLANE] = (char*)"<plane>";
+	tags.elements_o[SPHERE] = (char*)"<sphere>";
+	tags.elements_o[CYLINDER] = (char*)"<cylinder>";
+	tags.elements_o[CONE] = (char*)"<cone>";
+	tags.elements_o[CAMERA] = (char*)"<camera>";
+	tags.elements_o[LIGHT] = (char*)"<light>";
+
+	tags.elements_c[PLANE] = (char*)"</plane>";
+	tags.elements_c[SPHERE] = (char*)"</sphere>";
+	tags.elements_c[CYLINDER] = (char*)"</cylinder>";
+	tags.elements_c[CONE] = (char*)"</cone>";
+	tags.elements_c[CAMERA] = (char*)"</camera>";
+	tags.elements_c[LIGHT] = (char*)"</light>";
+	
+	tags.components_o[POSITION] = (char*)"<position>";
+	tags.components_o[COLOR] = (char*)"<color>";
+	tags.components_o[R_A] = (char*)"<r_a>";
+	tags.components_o[ORIENTATION] = (char*)"<orientation>";
+	tags.components_o[LOOK_AT] = (char*)"<look-at>";
+	tags.components_o[ORIGIN] = (char*)"<origin>";
+	tags.components_o[FOV] = (char*)"<fov>";
+	tags.components_o[INTENSITY] = (char*)"<intensity>";
+	
+	tags.components_c[POSITION] = (char*)"</position>";
+	tags.components_c[COLOR] = (char*)"</color>";
+	tags.components_c[R_A] = (char*)"</r_a>";
+	tags.components_c[ORIENTATION] = (char*)"</orientation>";
+	tags.components_c[LOOK_AT] = (char*)"</look-at>";
+	tags.components_c[ORIGIN] = (char*)"</origin>";
+	tags.components_c[FOV] = (char*)"</fov>";
+	tags.components_c[INTENSITY] = (char*)"</intensity>";
 	return (tags);
 }

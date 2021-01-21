@@ -1,0 +1,190 @@
+camera
+0 5 5 (vector look from)
+0 0 0 (vector look at)
+60.0 (float fov)
+;
+light
+0 0 0 (vector position)
+1.2 (float intensity)
+0xffffff (hex color)
+;
+sphere
+0 0 0 (vector center position)
+20 (float radius)
+0 0 0 (vector rotation)
+0 0 0 (vector translation)
+0x00fdff (hex color)
+;
+plane
+0 -30 0 (vector position)
+0 1 0 (vector normal)
+0 0 0 (vector rotation)
+0 0 0 (vector translation)
+0xffffff (hex color)
+;
+cone
+0 0 0 (vector position)
+0.5 (float angle)
+0 (float height)
+0 1 0 (vector axis)
+0 0 0 (vector rotation)
+0 0 0 (vector translation)
+0xff0000 (hex color)
+;
+cylinder
+0 0 0 (vector position)
+5 (float radius)
+10 (float height)
+0 1 0 (vector axis)
+90 0 0 (vector rotation)
+0 0 0 (vector translation)
+0xff0000 (hex color)
+;
+ellipsoid
+0 0 0 (vector position)
+50 (float distance)
+30 (float radius1)
+30 (float radius2)
+1 0 0 (vector axis)
+0 0 0 (vector rotation)
+0 0 0 (vector translation)
+0xff0000 (hex color)
+;
+paraboloid
+0 0 0 (vector position)
+10 (float distance)
+0 1 0 (vector axis)
+0 0 0 (vector rotation)
+0 0 0 (vector translation)
+0xff0000 (hex color)
+;
+triangle
+-20 -10 0 (vector point a)
+20 -10 0 (vector point b)
+0 20 0 (vector point c)
+0 45 0 (vector rotation)
+0 0 0 (vector translation)
+0xff0000 (hex color)
+;
+box
+-1 0 -1 (vector bound[0] ola back lower left corner dyal box)
+1 0 1 (vector bound[1] ola front upper right corner dyal box)
+0 50 0 (vector rotation)
+0 0 0 (vector translation)
+0xff0000 (hex color)
+;
+parallelogram
+-1 -1 0 (vector point a)
+1 -1 0 (vector point b)
+1 1 0 (vector point c)
+-1 1 0 (vector point d)
+0 0 0 (vector rotation)
+0 0 0 (vector translation)
+0xff0000 (hex color)
+
+
+**structurs li khdmt bihom  +  includes**
+
+# include "mlx.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <time.h>
+# include "../libft/libft.h"
+# include "../linearlib/linear_alg.h"
+
+typedef struct			s_base
+{
+	int					i;
+	int					p;
+	int					rt;
+	int					n;
+	int					somme;
+}						t_base;
+
+typedef struct			s_cam
+{
+	t_vec				pos;
+	t_vec				forward;
+	t_vec				u;
+	t_vec				v;
+	t_vec				lower_left_corner;
+	t_vec				horizontal;
+	t_vec				vertical;
+	float				fov;
+}						t_cam;
+
+typedef struct			s_ray
+{
+	t_vec				source;
+	t_vec				direction;
+}						t_ray;
+
+typedef enum			e_type
+{
+	NONE,
+	SPHERE = 10,
+	PLANE,
+	CONE,
+	CYLINDER,
+	ELLIPSOID,
+	PARABOLOID,
+	TRIANGLE,
+	BOX,
+	PARALLELOGRAM
+	// LTD_PLANE
+	// CUBE
+}						t_type;
+
+typedef struct			s_object
+{
+	t_type				type;
+	t_vec				pos;
+	t_vec				trans;
+	t_vec				rot;
+	t_vec				color;
+	t_vec				a;
+	t_vec				b;
+	t_vec				c;
+	t_vec				d;
+	t_vec				bounds[2];
+	float               height;//Caped cylinder cone
+	float				radius;
+	float				radius1;
+	float				radius2;
+	float				distance;
+	float				angle;
+	t_vec				normal;
+	t_vec				axis;
+	struct s_object		*next;
+}						t_object;
+
+typedef struct			s_light
+{
+	t_vec				pos;
+	t_vec				color;
+	float				intensity;
+	struct s_light		*next;
+}						t_light;
+
+typedef struct			s_hit
+{
+	t_vec				n;
+	t_vec				p;
+	t_object			*object;
+	float				t;
+}						t_hit;
+
+typedef struct			s_mx
+{
+	void				*mptr;
+	void				*wptr;
+	void				*iptr;
+	int					*rt;
+	int					bpp;
+	int					size;
+	int					end;
+	t_object			*objects;
+	t_light				*lights;
+	t_cam				cam;
+}						t_mx;

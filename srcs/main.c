@@ -6,14 +6,17 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:16:14 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:16:27 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/20 16:45:58 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include	"../includes/rt.h"
 
-void		print_rt(t_rt *rt)
+void		print_rt(t_rt *rrt)
 {
+	t_rt *rt;
+
+	rt = rrt;
 	while (rt->objects)
 	{
 		ft_putendl("\n[-------------------------------------------------]");
@@ -23,7 +26,6 @@ void		print_rt(t_rt *rt)
 		printf("color = {%lf,%lf,%lf}\n",rt->objects->color.x, rt->objects->color.y, rt->objects->color.z);
 		printf("orientation = {%lf,%lf,%lf}\n", rt->objects->orientation.x, rt->objects->orientation.y,rt->objects->orientation.z);
 		printf("raduis = %lf\n", rt->objects->r_a);
-		printf("ambient = %lf\n", rt->objects->ambient);
 		ft_putendl("\n[-----------------------------------------------]");
 		rt->objects = rt->objects->next;
 	}
@@ -68,7 +70,7 @@ int		main(int ac, char **av)
 			destroy(MALLOC_ERROR);
 		if (!(parse(file, rt)))
 			destroy(SYNTAX_ERROR);
-		// print_rt(rt);
+		print_rt(rt);
 		free_rt(&rt);
 		free(file);
 	}

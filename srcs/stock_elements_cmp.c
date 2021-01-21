@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:49:45 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:45:00 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/20 17:12:03 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,39 @@
 
 static	void			valid_forcam(t_node *n, int type)
 {
-	if (type == 6)
+	if (type == ORIGIN)
 		n->cam.origin = true;
-	else if (type == 5)
+	else if (type == LOOK_AT)
 		n->cam.look_at = true;
-	else if (type == 7)
+	else if (type == FOV)
 		n->cam.fov = true;
 }
 
 static	void			valid_forlight(t_node *n, int type)
 {
-	if (type == 0)
+	if (type == POSITION)
 		n->lit.position = true;
-	else if (type == 8)
+	else if (type == INTENSITY)
 		n->lit.intensity = true;
-	else if (type == 1)
+	else if (type == COLOR)
 		n->lit.color = true;
 }
 
 static	void			valid_cmp(t_node *n, int type)
 {
-	if (n->type == 4)
+	if (n->type == CAMERA)
 		valid_forcam(n, type);
-	else if (n->type == 5)
+	else if (n->type == LIGHT)
 		valid_forlight(n, type);
 	else
 	{
-		if (type == 0)
+		if (type == POSITION)
 			n->cmp.position = true;
-		else if (type == 1)
+		else if (type == COLOR)
 			n->cmp.color = true;
-		else if (type == 2)
+		else if (type == R_A)
 			n->cmp.radius = true;
-		else if (type == 3)
-			n->cmp.ambient = true;
-		else if (type == 4)
+		else if (type == ORIENTATION)
 			n->cmp.orientation = true;
 	}
 }
@@ -67,7 +65,7 @@ static	int				all_cmp_valid(t_node n)
 					|| n.lit.position == false))
 			return (-1);
 	}
-	else if (n.cmp.ambient == false || n.cmp.color == false ||
+	else if (n.cmp.color == false ||
 			n.cmp.orientation == false || n.cmp.radius == false ||
 			n.cmp.position == false)
 		return (-1);
@@ -79,10 +77,7 @@ static int				return_val(int v, t_node n, char *comp)
 	ft_strdel(&comp);
 	if (v == 1)
 		return (all_cmp_valid(n));
-	if (v == 2)
-		return (-1);
-	else
-		return (-1);
+	return (-1);
 }
 
 int						stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
@@ -93,7 +88,7 @@ int						stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
 
 	white_space(s, i);
 	if (!(comp = get_tag(&s[*i], i)))
-		return (-1);
+		return (-1);/*protect*/
 	if (!ft_strcmp(comp, tags.elements_c[n.type]))
 		return (return_val(1, n, comp));
 	if ((r = check_openning_elem(comp, tags.components_o)) < 0)
