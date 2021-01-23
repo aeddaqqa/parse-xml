@@ -1,25 +1,10 @@
 <scene>
-	<cylinder>
-		<position>100,200,300</position>
-		<color>123456789</color>
-		<r_a>50</r_a>
-		<orientation>100,200,300</orientation>
-	</cylinder>
-	<sphere>
+	<paraboloid>
 		<position>10,30,60</position>
 		<color>123456789</color>
-		<r_a>40</r_a>
-		<orientation>100,200,300</orientation>
-	</sphere>
-	<plane>
-		<position>100,200,300</position>
-		<color>123456789</color>
-		<r_a>50</r_a>
-		<orientation>100,200,300</orientation>
-	</plane>
-	<camera>
-		<origin>45,30,60</origin>
-		<fov>154</fov>
-		<look-at>10,30,60</look-at>
-	</camera>
+		<distance>45</distance>
+		<translation>10,30,60</translation>
+		<rotation>10,30,60</rotation>
+		<orientation>10,30,60</orientation>
+	</paraboloid>
 </scene>

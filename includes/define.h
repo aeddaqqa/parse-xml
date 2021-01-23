@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:46:46 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2021/01/20 18:36:20 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/01/23 17:31:47 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef	enum	e_type
 	CONE,
 	CAMERA,
 	LIGHT,
-	AMBIENT
+	ELLIPSOID,
+	PARABOLOID
 }				t_type;
 
 #endif
