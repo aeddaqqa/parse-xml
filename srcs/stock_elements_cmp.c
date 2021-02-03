@@ -6,215 +6,38 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:49:45 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2021/01/23 17:48:23 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/02/03 15:58:37 by chzabakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rt.h"
 
-static	void			valid_forcam(t_node *n, int type)
+int		all_cmp_validforobjects(t_node n)
 {
-	if (type == ORIGIN)
-		n->cam.origin = true;
-	else if (type == LOOK_AT)
-		n->cam.look_at = true;
-	else if (type == FOV)
-		n->cam.fov = true;
+	if (n.type == SPHERE)
+		return (all_cmp_valid_for_sphere(n));
+	else if (n.type == PLANE)
+		return (all_cmp_valid_for_plane(n));
+	else if (n.type == CONE)
+		return (all_cmp_valid_for_cone(n));
+	else if (n.type == CYLINDER)
+		return (all_cmp_valid_for_cylinder(n));
+	else if (n.type == ELLIPSOID)
+		return (all_cmp_valid_for_ellipsoid(n));
+	else if (n.type == PARABOLOID)
+		return (all_cmp_valid_for_paraboloid(n));
+	else if (n.type == TRIANGLE)
+		return (all_cmp_valid_for_triangle(n));
+	else if (n.type == BOX)
+		return (all_cmp_valid_for_box(n));
+	else if (n.type == PARALLELOGRAM)
+		return (all_cmp_valid_for_parallelogram(n));
+	else if (n.type == TORUS)
+		return (all_cmp_valid_for_torus(n));
+	return (-1);
 }
 
-static	void			valid_forlight(t_node *n, int type)
-{
-	if (type == POSITION)
-		n->lit.position = true;
-	else if (type == INTENSITY)
-		n->lit.intensity = true;
-	else if (type == COLOR)
-		n->lit.color = true;
-}
-
-static void				valid_cmp_for_sphere(t_node *n, int type)
-{
-	if (type == POSITION)
-		n->cmp.position = true;
-	else if (type == COLOR)
-		n->cmp.color = true;
-	else if (type == RADIUS)
-		n->cmp.radius = true;
-	else if (type == ROTATION)
-		n->cmp.rotation = true;
-	else if (type == TRANSLATION)
-		n->cmp.translation = true;
-}
-
-static void				valid_cmp_for_plane(t_node *n, int type)
-{
-	if (type == POSITION)
-		n->cmp.position = true;
-	else if (type == COLOR)
-		n->cmp.color = true;
-	else if (type == ORIENTATION)
-		n->cmp.orientation = true;
-	else if (type == ROTATION)
-		n->cmp.rotation = true;
-	else if (type == TRANSLATION)
-		n->cmp.translation = true;
-}
-
-static void				valid_cmp_for_cone(t_node *n, int type)
-{
-	if (type == POSITION)
-		n->cmp.position = true;
-	else if (type == COLOR)
-		n->cmp.color = true;
-	else if (type == ORIENTATION)
-		n->cmp.orientation = true;
-	else if (type == ROTATION)
-		n->cmp.rotation = true;
-	else if (type == TRANSLATION)
-		n->cmp.translation = true;
-	else if (type == HEIGHT)
-		n->cmp.height = true;
-	else if (type == ANGLE)
-		n->cmp.angle = true;
-}
-
-static void				valid_cmp_for_cylinder(t_node *n, int type)
-{
-	if (type == POSITION)
-		n->cmp.position = true;
-	else if (type == COLOR)
-		n->cmp.color = true;
-	else if (type == ORIENTATION)
-		n->cmp.orientation = true;
-	else if (type == ROTATION)
-		n->cmp.rotation = true;
-	else if (type == TRANSLATION)
-		n->cmp.translation = true;
-	else if (type == HEIGHT)
-		n->cmp.height = true;
-	else if (type == RADIUS)
-		n->cmp.radius = true;
-}
-
-static void				valid_cmp_for_paraboloid(t_node *n, int type)
-{
-	if (type == POSITION)
-		n->cmp.position = true;
-	else if (type == COLOR)
-		n->cmp.color = true;
-	else if (type == ORIENTATION)
-		n->cmp.orientation = true;
-	else if (type == ROTATION)
-		n->cmp.rotation = true;
-	else if (type == TRANSLATION)
-		n->cmp.translation = true;
-	else if (type == DISTANCE)
-		n->cmp.dist = true;
-}
-
-static void				valid_cmp_for_ellipsoid(t_node *n, int type)
-{
-	if (type == POSITION)
-		n->cmp.position = true;
-	else if (type == COLOR)
-		n->cmp.color = true;
-	else if (type == ORIENTATION)
-		n->cmp.orientation = true;
-	else if (type == ROTATION)
-		n->cmp.rotation = true;
-	else if (type == TRANSLATION)
-		n->cmp.translation = true;
-	else if (type == DISTANCE)
-		n->cmp.dist = true;
-	else if (type == RADIUS_1)
-		n->cmp.radius1 = true;
-	else if (type == RADIUS_2)
-		n->cmp.radius2 = true;
-}
-
-static	void			valid_cmp(t_node *n, int type)
-{
-	if (n->type == CAMERA)
-		valid_forcam(n, type);
-	else if (n->type == LIGHT)
-		valid_forlight(n, type);
-	else
-	{
-		if (n->type == SPHERE)
-			valid_cmp_for_sphere(n, type);
-		else if (n->type == PLANE)
-			valid_cmp_for_plane(n, type);
-		else if (n->type == CONE)
-			valid_cmp_for_cone(n, type);
-		else if (n->type == CYLINDER)
-			valid_cmp_for_cylinder(n, type);
-		else if (n->type == ELLIPSOID)
-			valid_cmp_for_ellipsoid(n, type);
-		else if (n->type == PARABOLOID)
-			valid_cmp_for_paraboloid(n, type);
-	}
-}
-
-static	int				all_cmp_valid_for_sphere(t_node n)
-{
-	if 	(n.cmp.color == false ||
-			n.cmp.rotation == false || n.cmp.radius == false ||
-			n.cmp.position == false || n.cmp.translation == false)
-		return(-1);
-	return (1);
-}
-
-static	int				all_cmp_valid_for_plane(t_node n)
-{
-	if 	(n.cmp.color == false ||
-			n.cmp.rotation == false || n.cmp.orientation == false ||
-			n.cmp.position == false || n.cmp.translation == false)
-		return(-1);
-	return (1);
-}
-
-static	int				all_cmp_valid_for_cone(t_node n)
-{
-	if 	(n.cmp.color == false ||
-			n.cmp.rotation == false || n.cmp.orientation == false ||
-			n.cmp.position == false || n.cmp.translation == false ||
-			n.cmp.height || n.cmp.angle)
-		return(-1);
-	return (1);
-}
-
-static	int				all_cmp_valid_for_cylinder(t_node n)
-{
-	if 	(n.cmp.color == false ||
-			n.cmp.rotation == false || n.cmp.orientation == false ||
-			n.cmp.position == false || n.cmp.translation == false ||
-			n.cmp.height || n.cmp.radius)
-		return(-1);
-	return (1);
-}
-
-static	int				all_cmp_valid_for_paraboloid(t_node n)
-{
-	if 	(n.cmp.color == false ||
-			n.cmp.rotation == false || n.cmp.orientation == false ||
-			n.cmp.position == false || n.cmp.translation == false ||
-			n.cmp.dist == false)
-		return(-1);
-	return (1);
-}
-
-static	int				all_cmp_valid_for_ellipsoid(t_node n)
-{
-	if 	(n.cmp.color == false ||
-			n.cmp.rotation == false || n.cmp.orientation == false ||
-			n.cmp.position == false || n.cmp.translation == false ||
-			n.cmp.dist == false || n.cmp.radius2 == false|| 
-			n.cmp.radius1 == false)
-		return(-1);
-	return (1);
-}
-
-static	int				all_cmp_valid(t_node n)
+int		all_cmp_valid(t_node n)
 {
 	if (n.type == CAMERA)
 	{
@@ -228,30 +51,25 @@ static	int				all_cmp_valid(t_node n)
 					|| n.lit.position == false))
 			return (-1);
 	}
-	else if (n.type == SPHERE)
-		return (all_cmp_valid_for_sphere(n));
-	else if (n.type == PLANE)
-		return (all_cmp_valid_for_plane(n));
-	else if (n.type == CONE)
-		return (all_cmp_valid_for_cone(n));
-	else if (n.type == CYLINDER)
-		return (all_cmp_valid_for_cylinder(n));
-	else if (n.type == ELLIPSOID)
-		return (all_cmp_valid_for_ellipsoid(n));
-	else if (n.type == PARABOLOID)
-		return (all_cmp_valid_for_paraboloid(n));
+	else
+		return (all_cmp_validforobjects(n));
 	return (1);
 }
 
-static int				return_val(int v, t_node n, char *comp)
+int		return_val(t_node n, char *comp)
 {
 	ft_strdel(&comp);
-	if (v == 1)
-		return (all_cmp_valid(n));
+	return (all_cmp_valid(n));
+}
+
+int		content_norm(char *content)
+{
+	if (content)
+		free(content);
 	return (-1);
 }
 
-int						stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
+int		stock_elements_cmp(char *s, t_tags tags, t_rt *rt, int *i)
 {
 	int			r;
 	char		*comp;
@@ -259,23 +77,20 @@ int						stock_elements_cmp(char *s, t_tags tags, t_node n, int *i, void *obje)
 
 	white_space(s, i);
 	if (!(comp = get_tag(&s[*i], i)))
-		return (-1);/*protect*/
-	if (!ft_strcmp(comp, tags.elements_c[n.type]))
-		return (return_val(1, n, comp));
-	if ((r = check_openning_elem(comp, tags.components_o)) < 0)
-		return (return_val(2, n, comp));
-	if ((check_components_exist(n, r)) == -1)
-		return (return_val(3, n, comp));
-	valid_cmp(&n, r);
-	ft_strdel(&comp);
-	if ((!(content = inner_text(&s[*i], i))) || (stock_cmp(&obje, content, r, n.type)) < 0)
-	{
-		if (content)
-			free(content);
 		return (-1);
-	}
+	if (!ft_strcmp(comp, tags.elements_c[rt->node.type]))
+		return (return_val(rt->node, comp));
+	if ((r = check_openning_elem(comp, tags.components_o)) < 0)
+		return (return_val(rt->node, comp));
+	if ((check_components_exist(rt->node, r)) == -1)
+		return (return_val(rt->node, comp));
+	valid_cmp(&rt->node, r);
+	ft_strdel(&comp);
+	if ((!(content = inner_text(&s[*i], i))) ||\
+			(stock_cmp((void*)&rt->obj, content, r, rt->node.type)) < 0)
+		return (content_norm(content));
 	free(content);
 	if (check_closing_elem(&s[*i], r, tags.components_c, i) < 0)
 		return (-1);
-	return (stock_elements_cmp(s, tags, n, i, obje));
+	return (stock_elements_cmp(s, tags, rt, i));
 }

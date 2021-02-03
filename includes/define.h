@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:46:46 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2021/01/23 17:31:47 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/02/03 16:40:14 by chzabakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 **				Error-gen
 */
 
-#define W 800
-#define H 800
+# define W 800
+# define H 800
 
 typedef enum	e_error
 {
@@ -39,7 +39,12 @@ typedef	enum	e_type
 	CAMERA,
 	LIGHT,
 	ELLIPSOID,
-	PARABOLOID
+	PARABOLOID,
+	TRIANGLE,
+	BOX,
+	PARALLELOGRAM,
+	TORUS,
+	AMBIENT
 }				t_type;
 
 #endif
