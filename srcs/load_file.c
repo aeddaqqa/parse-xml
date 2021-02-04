@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 01:24:04 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2020/12/21 05:40:22 by aeddaqqa         ###   ########.fr       */
+/*   Updated: 2021/02/03 16:29:32 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char		*read_file(char *path)
 		free(tmp);
 		free(line);
 	}
+	close(fd);
 	return (str);
 }
 

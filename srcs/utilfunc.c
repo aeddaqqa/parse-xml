@@ -6,7 +6,7 @@
 /*   By: aeddaqqa <aeddaqqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 05:28:42 by aeddaqqa          #+#    #+#             */
-/*   Updated: 2021/02/03 16:37:26 by chzabakh         ###   ########.fr       */
+/*   Updated: 2021/02/04 09:55:59 by aeddaqqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,19 @@ void					*new_object(int type)
 	{
 		if (!(n_obj = malloc(sizeof(t_object))))
 			return (NULL);
-		new_objects2(n_obj);
+		n_obj->position = (t_point){0, 0, 0};
+		n_obj->point_a = (t_point){0, 0, 0};
+		n_obj->point_b = (t_point){0, 0, 0};
+		n_obj->point_c = (t_point){0, 0, 0};
+		n_obj->point_d = (t_point){0, 0, 0};
 		n_obj->corner[0] = (t_point){0, 0, 0};
 		n_obj->corner[1] = (t_point){0, 0, 0};
+		n_obj->orientation = (t_vect3){0, 0, 0};
+		n_obj->rotation = (t_vect3){0, 0, 0};
+		n_obj->translation = (t_vect3){0, 0, 0};
+		n_obj->color = (t_color){0, 0, 0};
 		n_obj->radius = 0;
+		n_obj->height = 0;
 		n_obj->radius2 = 0;
 		n_obj->radius1 = 0;
 		n_obj->angle = 0;
